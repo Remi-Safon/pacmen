@@ -5,9 +5,10 @@
 #include <QGraphicsScene>
 #include <QGraphicsTextItem>
 #include <QCoreApplication>
+#include <QDebug>
 #include "player.h"
 #include "enemy.h"
-
+#include "environment.h"
 
 class GameManager: public QGraphicsView
 {
@@ -28,6 +29,8 @@ public:
     QGraphicsScene* sceneGame;
     QGraphicsTextItem* scoreText;
     QGraphicsTextItem* livesText;
+
+    Environment* environment;
 
     Player* player; //needs scene to load itself and progress itself?
     Enemy* ghost1;

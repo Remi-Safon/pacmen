@@ -33,6 +33,8 @@ void GameManager::newGame(){
 
     //Load player and enemies
 
+    environment = new Environment();
+
     player = new Player();
     ghost1 = new Enemy();
     ghost2 = new Enemy();
@@ -41,6 +43,8 @@ void GameManager::newGame(){
 
     changeLivesHUD();
     changeScoreHUD();
+
+    qDebug ("Print environment :\n %s", environment->toString().c_str());
 }
 
 void GameManager::quitGame()
