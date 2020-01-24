@@ -79,6 +79,7 @@ Environment::Environment()
         }
     }
 }
+
 string Environment::toString() {
     ostringstream ss;
 

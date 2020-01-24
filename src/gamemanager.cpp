@@ -1,5 +1,6 @@
 #include "gamemanager.h"
 #include "button.h"
+#include "boardservice.h"
 
 GameManager::GameManager(QWidget* parent)
 {
@@ -33,13 +34,13 @@ void GameManager::newGame(){
 
     //Load player and enemies
 
-    environment = new Environment();
+    environment = BoardService::getInstance();
 
-    player = new Player();
-    ghost1 = new Enemy();
-    ghost2 = new Enemy();
-    ghost3 = new Enemy();
-    ghost4 = new Enemy();
+    player = new Player(10, 17);
+    ghost1 = new Enemy(10, 13);
+    ghost2 = new Enemy(10, 14);
+    ghost3 = new Enemy(11, 13);
+    ghost4 = new Enemy(11, 14);
 
     changeLivesHUD();
     changeScoreHUD();

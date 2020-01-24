@@ -25,14 +25,11 @@ enum class  BoxState {
     FOOD = 4
 };
 
-
-
 class Environment {
 public:
     BoxState board [BOARD_Y][BOARD_X];
-
-    Environment();
     string toString();
+    Environment();
 };
 
 #endif // ENVIRONMENT_H

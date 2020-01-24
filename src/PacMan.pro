@@ -25,6 +25,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    boardservice.cpp \
+    character.cpp \
         main.cpp \
     player.cpp \
     enemy.cpp \
@@ -34,6 +36,8 @@ SOURCES += \
     button.cpp
 
 HEADERS += \
+    boardservice.h \
+    character.h \
     player.h \
     enemy.h \
     gamemanager.h \
