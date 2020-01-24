@@ -1,0 +1,4 @@
+#ifndef BOARDSERVICE_H
+#define BOARDSERVICE_H
+
+#endif // BOARDSERVICE_H
