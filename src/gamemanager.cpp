@@ -166,3 +166,9 @@ void GameManager::pauseMenuDisplay(){
     scenePause->addItem(quitButton);
 }
 
+void GameManager::keyPressEvent(QKeyEvent *event)
+{
+    qDebug ("keyPressEvent\n");
+    this->player->setNextMove(Qt::Key());
+}
+

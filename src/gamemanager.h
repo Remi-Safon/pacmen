@@ -24,6 +24,7 @@ public:
     void changeScoreHUD();
     void changeLivesHUD();
 
+
     QGraphicsScene* scene;
     QGraphicsScene* scenePause;
     QGraphicsScene* sceneGame;
@@ -43,6 +44,7 @@ public slots:
     void pauseGame();
     void resumeGame();
     void goMainMenu();
+    void keyPressEvent(QKeyEvent *event);
 
 };
 

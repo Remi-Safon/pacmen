@@ -323,9 +323,12 @@ debug\moc_gamemanager.cpp: ..\src\gamemanager.h \
 		C:\Qt\5.12.2\msvc2017\include\QtCore\qeventloop.h \
 		C:\Qt\5.12.2\msvc2017\include\QtCore\QDebug \
 		..\src\player.h \
+		C:\Qt\5.12.2\msvc2017\include\QtWidgets\QWidget \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\QKeyEvent \
 		..\src\character.h \
-		..\src\enemy.h \
 		..\src\environment.h \
+		..\src\boardservice.h \
+		..\src\enemy.h \
 		debug\moc_predefs.h \
 		C:\Qt\5.12.2\msvc2017\bin\moc.exe
 	C:\Qt\5.12.2\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include D:/DOCUMENTS/DEV/pacmen/build-PacMan-Desktop_Qt_5_12_2_MSVC2017_32bit-Debug/debug/moc_predefs.h -IC:/Qt/5.12.2/msvc2017/mkspecs/win32-msvc -ID:/DOCUMENTS/DEV/pacmen/src -IC:/Qt/5.12.2/msvc2017/include -IC:/Qt/5.12.2/msvc2017/include/QtWidgets -IC:/Qt/5.12.2/msvc2017/include/QtGui -IC:/Qt/5.12.2/msvc2017/include/QtANGLE -IC:/Qt/5.12.2/msvc2017/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\cppwinrt" ..\src\gamemanager.h -o debug\moc_gamemanager.cpp
@@ -510,7 +513,73 @@ debug\boardservice.obj: ..\src\boardservice.cpp ..\src\boardservice.h \
 		C:\Qt\5.12.2\msvc2017\include\QtCore\qsharedpointer.h \
 		C:\Qt\5.12.2\msvc2017\include\QtCore\qsharedpointer_impl.h
 
-debug\character.obj: ..\src\character.cpp ..\src\character.h
+debug\character.obj: ..\src\character.cpp ..\src\character.h \
+		..\src\environment.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\QDebug \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qdebug.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qalgorithms.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qglobal.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qconfig-bootstrapped.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qconfig.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qtcore-config.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qsystemdetection.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qprocessordetection.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qcompilerdetection.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qtypeinfo.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qsysinfo.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qlogging.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qflags.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qatomic.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qbasicatomic.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qatomic_bootstrap.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qgenericatomic.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qatomic_cxx11.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qatomic_msvc.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qglobalstatic.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qmutex.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qnumeric.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qversiontagging.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qhash.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qchar.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qiterator.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qlist.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qrefcount.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qarraydata.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qhashfunctions.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstring.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qbytearray.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qnamespace.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringliteral.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringalgorithms.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringview.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringbuilder.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qpair.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qbytearraylist.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringlist.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qregexp.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringmatcher.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qmap.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qtextstream.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qiodevice.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qobject.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qobjectdefs.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qobjectdefs_impl.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qcoreevent.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qscopedpointer.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qmetatype.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qvarlengtharray.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qcontainerfwd.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qobject_impl.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qlocale.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qvariant.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qshareddata.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qvector.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qpoint.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qset.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qcontiguouscache.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qsharedpointer.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qsharedpointer_impl.h \
+		..\src\boardservice.h
 
 debug\main.obj: ..\src\main.cpp C:\Qt\5.12.2\msvc2017\include\QtWidgets\QApplication \
 		C:\Qt\5.12.2\msvc2017\include\QtWidgets\qapplication.h \
@@ -637,15 +706,191 @@ debug\main.obj: ..\src\main.cpp C:\Qt\5.12.2\msvc2017\include\QtWidgets\QApplica
 		C:\Qt\5.12.2\msvc2017\include\QtCore\QCoreApplication \
 		C:\Qt\5.12.2\msvc2017\include\QtCore\QDebug \
 		..\src\player.h \
+		C:\Qt\5.12.2\msvc2017\include\QtWidgets\QWidget \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\QKeyEvent \
 		..\src\character.h \
-		..\src\enemy.h \
-		..\src\environment.h
+		..\src\environment.h \
+		..\src\boardservice.h \
+		..\src\enemy.h
 
 debug\player.obj: ..\src\player.cpp ..\src\player.h \
-		..\src\character.h
+		C:\Qt\5.12.2\msvc2017\include\QtWidgets\QWidget \
+		C:\Qt\5.12.2\msvc2017\include\QtWidgets\qwidget.h \
+		C:\Qt\5.12.2\msvc2017\include\QtWidgets\qtwidgetsglobal.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qtguiglobal.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qglobal.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qconfig-bootstrapped.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qconfig.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qtcore-config.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qsystemdetection.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qprocessordetection.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qcompilerdetection.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qtypeinfo.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qsysinfo.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qlogging.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qflags.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qatomic.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qbasicatomic.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qatomic_bootstrap.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qgenericatomic.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qatomic_cxx11.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qatomic_msvc.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qglobalstatic.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qmutex.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qnumeric.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qversiontagging.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qtgui-config.h \
+		C:\Qt\5.12.2\msvc2017\include\QtWidgets\qtwidgets-config.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qwindowdefs.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qobjectdefs.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qnamespace.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qobjectdefs_impl.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qwindowdefs_win.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qobject.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstring.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qchar.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qbytearray.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qrefcount.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qarraydata.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringliteral.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringalgorithms.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringview.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringbuilder.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qlist.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qalgorithms.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qiterator.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qhashfunctions.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qpair.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qbytearraylist.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringlist.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qregexp.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringmatcher.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qcoreevent.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qscopedpointer.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qmetatype.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qvarlengtharray.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qcontainerfwd.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qobject_impl.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qmargins.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qpaintdevice.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qrect.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qsize.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qpoint.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qpalette.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qcolor.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qrgb.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qrgba64.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qbrush.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qvector.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qmatrix.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qpolygon.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qregion.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qdatastream.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qiodevice.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qline.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qtransform.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qpainterpath.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qimage.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qpixelformat.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qpixmap.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qsharedpointer.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qshareddata.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qhash.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qsharedpointer_impl.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qfont.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qfontmetrics.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qfontinfo.h \
+		C:\Qt\5.12.2\msvc2017\include\QtWidgets\qsizepolicy.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qcursor.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qkeysequence.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qevent.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qvariant.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qmap.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qdebug.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qtextstream.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qlocale.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qset.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qcontiguouscache.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qurl.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qurlquery.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qfile.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qfiledevice.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qvector2d.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\qtouchdevice.h \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\QKeyEvent \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\QDebug \
+		..\src\character.h \
+		..\src\environment.h \
+		..\src\boardservice.h
 
 debug\enemy.obj: ..\src\enemy.cpp ..\src\enemy.h \
-		..\src\character.h
+		..\src\character.h \
+		..\src\environment.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\QDebug \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qdebug.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qalgorithms.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qglobal.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qconfig-bootstrapped.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qconfig.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qtcore-config.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qsystemdetection.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qprocessordetection.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qcompilerdetection.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qtypeinfo.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qsysinfo.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qlogging.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qflags.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qatomic.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qbasicatomic.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qatomic_bootstrap.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qgenericatomic.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qatomic_cxx11.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qatomic_msvc.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qglobalstatic.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qmutex.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qnumeric.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qversiontagging.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qhash.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qchar.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qiterator.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qlist.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qrefcount.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qarraydata.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qhashfunctions.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstring.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qbytearray.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qnamespace.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringliteral.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringalgorithms.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringview.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringbuilder.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qpair.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qbytearraylist.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringlist.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qregexp.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qstringmatcher.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qmap.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qtextstream.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qiodevice.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qobject.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qobjectdefs.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qobjectdefs_impl.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qcoreevent.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qscopedpointer.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qmetatype.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qvarlengtharray.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qcontainerfwd.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qobject_impl.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qlocale.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qvariant.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qshareddata.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qvector.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qpoint.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qset.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qcontiguouscache.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qsharedpointer.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qsharedpointer_impl.h \
+		..\src\boardservice.h
 
 debug\gamemanager.obj: ..\src\gamemanager.cpp ..\src\gamemanager.h \
 		C:\Qt\5.12.2\msvc2017\include\QtWidgets\QGraphicsView \
@@ -767,14 +1012,16 @@ debug\gamemanager.obj: ..\src\gamemanager.cpp ..\src\gamemanager.h \
 		C:\Qt\5.12.2\msvc2017\include\QtCore\qeventloop.h \
 		C:\Qt\5.12.2\msvc2017\include\QtCore\QDebug \
 		..\src\player.h \
+		C:\Qt\5.12.2\msvc2017\include\QtWidgets\QWidget \
+		C:\Qt\5.12.2\msvc2017\include\QtGui\QKeyEvent \
 		..\src\character.h \
-		..\src\enemy.h \
 		..\src\environment.h \
+		..\src\boardservice.h \
+		..\src\enemy.h \
 		..\src\button.h \
 		C:\Qt\5.12.2\msvc2017\include\QtWidgets\QGraphicsRectItem \
 		C:\Qt\5.12.2\msvc2017\include\QtWidgets\QGraphicsSceneMouseEvent \
-		C:\Qt\5.12.2\msvc2017\include\QtWidgets\qgraphicssceneevent.h \
-		..\src\boardservice.h
+		C:\Qt\5.12.2\msvc2017\include\QtWidgets\qgraphicssceneevent.h
 
 debug\environment.obj: ..\src\environment.cpp ..\src\environment.h \
 		C:\Qt\5.12.2\msvc2017\include\QtCore\QDebug \
