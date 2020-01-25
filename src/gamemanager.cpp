@@ -4,19 +4,20 @@
 
 GameManager::GameManager(QWidget* parent)
 {
+    isPlaying = false;
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setFixedSize(800,500);
+    setFixedSize(800,900);
 
     //Load all scenes
     scene = new QGraphicsScene();
-    scene->setSceneRect(0,0,800,500);
+    scene->setSceneRect(0,0,800,900);
 
     sceneGame = new QGraphicsScene();
-    sceneGame->setSceneRect(0,0,800,500);
+    sceneGame->setSceneRect(0,0,800,900);
 
     scenePause = new QGraphicsScene();
-    scenePause->setSceneRect(0,0,800,500);
+    scenePause->setSceneRect(0,0,800,900);
 
     setScene(scene);
 
@@ -42,10 +43,15 @@ void GameManager::newGame(){
     ghost3 = new Enemy(11, 13);
     ghost4 = new Enemy(11, 14);
 
+    isPlaying = true;
+
     changeLivesHUD();
     changeScoreHUD();
 
-    qDebug ("Print environment :\n %s", environment->toString().c_str());
+    //qDebug ("Print environment :\n %s", environment->toString().c_str());
+
+    environmentUI();
+
 }
 
 void GameManager::quitGame()
@@ -55,9 +61,10 @@ void GameManager::quitGame()
 
 void GameManager::pauseGame()
 {
-    //TODO: STOP TIME AND KEEP SCENE
     changeLivesHUD();
     setScene(scenePause);
+
+    isPlaying = false;
 
     show();
 
@@ -67,6 +74,7 @@ void GameManager::pauseGame()
 void GameManager::resumeGame()
 {
     //TODO: SET TIME TO NORMAL AND HIDE PAUSE MENU
+    isPlaying = true;
     setScene(sceneGame);
     show();
 }
@@ -78,6 +86,8 @@ void GameManager::goMainMenu()
     free(ghost2);
     free(ghost3);
     free(ghost4);
+
+    isPlaying = false;
 
     setScene(scene);
     show();
@@ -166,9 +176,32 @@ void GameManager::pauseMenuDisplay(){
     scenePause->addItem(quitButton);
 }
 
+void GameManager::environmentUI(){
+    //QImage map ("C:/Users/Shana/Pictures/test.png");
+    /*for(int i = 0; i < map.width(); i++){
+        for(int n = 0; n < map.height(); n++){
+            qDebug () << map.pixel(i,n);
+        }
+    }*/
+    QImage map(environment->display());
+    int txPos = (this->width()/2 - scoreText->boundingRect().width()/2)-100;
+    int tyPos = 80;
+    //map.save("C:/Users/Shana/Pictures/test.png");
+    QGraphicsPixmapItem* item = new QGraphicsPixmapItem( QPixmap::fromImage(map));
+    item->setScale(28);
+    item->setPos(txPos,tyPos);
+    sceneGame->addItem(item);
+}
+
 void GameManager::keyPressEvent(QKeyEvent *event)
 {
-    qDebug ("keyPressEvent\n");
-    this->player->setNextMove(Qt::Key());
+    //CREER UNE VARIABLE D'ETAT -> isPlaying
+    if(isPlaying){
+        qDebug ("keyPressEvent\n");
+        this->player->setNextMove(Qt::Key(event->key()));
+
+        //SI CASE != MUR
+        this->player->move();
+    }
 }
 

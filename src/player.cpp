@@ -10,7 +10,7 @@ int Player::loseLive() {
     return lives--;
 }
 void Player::move() {
-
+    qDebug () << this->nextMove;
     switch (this->nextMove) {
         case Qt::Key_Up:
             qDebug ("UP\n");

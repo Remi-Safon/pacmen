@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <QImage>
 
 #define BOARD_X 19
 #define BOARD_Y 29
@@ -30,6 +31,8 @@ public:
     BoxState board [BOARD_Y][BOARD_X];
     string toString();
     Environment();
+
+    QImage display();
 };
 
 #endif // ENVIRONMENT_H

@@ -6,6 +6,8 @@
 #include <QGraphicsTextItem>
 #include <QCoreApplication>
 #include <QDebug>
+#include <QImage>
+#include <QLabel>
 #include "player.h"
 #include "enemy.h"
 #include "environment.h"
@@ -20,6 +22,8 @@ public:
     void pauseMenuDisplay();
 
     void hudLoad();
+
+    void environmentUI();
 
     void changeScoreHUD();
     void changeLivesHUD();
@@ -38,6 +42,8 @@ public:
     Enemy* ghost2;
     Enemy* ghost3;
     Enemy* ghost4;
+
+    bool isPlaying;
 public slots:
     void newGame();
     void quitGame();

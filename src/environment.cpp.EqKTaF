@@ -75,7 +75,7 @@ Environment::Environment()
     for (int y = 0; y < BOARD_Y; y++) {
         for (int x = 0; x < BOARD_X; x++) {
                 //change 1st index to indexBoard for random map
-               this->board[y][x] = BOARDS [0][y][x];
+               this->board[y][x] = BOARDS [indexBoard][y][x];
         }
     }
 }
@@ -88,7 +88,6 @@ QImage Environment::display(){
     for (int y = 0; y < BOARD_Y; y++) {
         for (int x = 0; x < BOARD_X; x++) {
             QRgb argb = qRgb(1,0,0);
-            //1PX -> 5/5PX
             switch ((int)this->board[y][x]) {
                 case 0:
                     argb = qRgb(0,0,0);
