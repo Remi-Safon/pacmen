@@ -2,7 +2,9 @@
 
 Player::Player(int x, int y) : Character(x, y) {
     lives = 3;
+    nbGold = 0;
     this->nextMove = Qt::Key_0;
+    this->characterType = BoxState::PLAYER;
     this->environment->setStateBox(x, y, BoxState::PLAYER);
 }
 Player::~Player() {
@@ -13,11 +15,13 @@ int Player::loseLive() {
 }
 void Player::move() {
 
+    this->oldBoardPos->set(this->boardPos->x, this->boardPos->y);
+
     std::map<Qt::Key, BoxState> possibleMoves;
-    possibleMoves[Qt::Key_Up] = this->environment->getBoxState(this->boardPositionX, this->boardPositionY - 1);
-    possibleMoves[Qt::Key_Down] = this->environment->getBoxState(this->boardPositionX, this->boardPositionY + 1);
-    possibleMoves[Qt::Key_Right] = this->environment->getBoxState(this->boardPositionX + 1, this->boardPositionY);
-    possibleMoves[Qt::Key_Left] = this->environment->getBoxState(this->boardPositionX - 1, this->boardPositionY);
+    possibleMoves[Qt::Key_Up] = this->environment->getBoxState(this->boardPos->x, this->boardPos->y - 1);
+    possibleMoves[Qt::Key_Down] = this->environment->getBoxState(this->boardPos->x, this->boardPos->y + 1);
+    possibleMoves[Qt::Key_Right] = this->environment->getBoxState(this->boardPos->x + 1, this->boardPos->y);
+    possibleMoves[Qt::Key_Left] = this->environment->getBoxState(this->boardPos->x - 1, this->boardPos->y);
 
     switch (this->lastMove) {
         case Qt::Key_Up:
@@ -36,12 +40,12 @@ void Player::move() {
 
 
    if (this->nextMove != Qt::Key_0 && possibleMoves.count(this->nextMove) > 0 && possibleMoves[this->nextMove] != BoxState::WALL) {
-       this->boardPositionX += this->movesVector.at(this->nextMove).x;
-       this->boardPositionY += this->movesVector.at(this->nextMove).y;
+       this->boardPos->x += this->movesVector.at(this->nextMove).x;
+       this->boardPos->y += this->movesVector.at(this->nextMove).y;
        this->lastMove = this->nextMove;
    } else if (this->lastMove != Qt::Key_0 && possibleMoves.count(this->lastMove) > 0 && possibleMoves[this->lastMove] != BoxState::WALL) {
-       this->boardPositionX += this->movesVector.at(this->lastMove).x;
-       this->boardPositionY += this->movesVector.at(this->lastMove).y;
+       this->boardPos->x += this->movesVector.at(this->lastMove).x;
+       this->boardPos->y += this->movesVector.at(this->lastMove).y;
    } else {
 
        std::vector<Qt::Key> leftPossibilities;
@@ -54,12 +58,15 @@ void Player::move() {
 
        unsigned int rand = std::rand() % leftPossibilities.size();
 
-       this->boardPositionX += this->movesVector.at(leftPossibilities[rand]).x;
-       this->boardPositionY += this->movesVector.at(leftPossibilities[rand]).y;
+       this->boardPos->add (
+                   this->movesVector.at(leftPossibilities[rand]).x,
+                   this->movesVector.at(leftPossibilities[rand]).y
+       );
        this->lastMove = leftPossibilities[rand];
 
    }
-   this->environment->setStateBox(this->boardPositionX, this->boardPositionY, BoxState::PLAYER);
+   this->checkEat();
+   this->environment->setStateBox(this->boardPos->x, this->boardPos->y, BoxState::PLAYER);
    this->nextMove = Qt::Key_0;
    possibleMoves.clear();
 }
@@ -85,4 +92,12 @@ void Player::setNextMove(Qt::Key nextMove) {
 
 bool Player::isAlive() {
     return this->lives > 0;
+}
+int Player::getLives() {
+    return this->lives;
+}
+void Player::checkEat() {
+    if (this->environment->getBoxState(this->boardPos->x, this->boardPos->y) == BoxState::GOLD) {
+        this->nbGold++;
+    }
 }

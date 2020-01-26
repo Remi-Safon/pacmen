@@ -2,6 +2,7 @@
 
 Enemy::Enemy(int x, int y) : Character(x, y) {
     this->environment->setStateBox(x, y, BoxState::ENEMY); // ennemy placement on the board
+    this->characterType = BoxState::ENEMY;
     std::srand(std::time(NULL));
 }
 
@@ -12,10 +13,10 @@ Enemy::~Enemy() {
 void Enemy::move() {
 
     std::map<Qt::Key, BoxState> possibleMoves;
-    possibleMoves[Qt::Key_Up] = this->environment->getBoxState(this->boardPositionX, this->boardPositionY - 1);
-    possibleMoves[Qt::Key_Down] = this->environment->getBoxState(this->boardPositionX, this->boardPositionY + 1);
-    possibleMoves[Qt::Key_Right] = this->environment->getBoxState(this->boardPositionX + 1, this->boardPositionY);
-    possibleMoves[Qt::Key_Left] = this->environment->getBoxState(this->boardPositionX - 1, this->boardPositionY);
+    possibleMoves[Qt::Key_Up] = this->environment->getBoxState(this->boardPos->x, this->boardPos->y - 1);
+    possibleMoves[Qt::Key_Down] = this->environment->getBoxState(this->boardPos->x, this->boardPos->y + 1);
+    possibleMoves[Qt::Key_Right] = this->environment->getBoxState(this->boardPos->x + 1, this->boardPos->y);
+    possibleMoves[Qt::Key_Left] = this->environment->getBoxState(this->boardPos->x - 1, this->boardPos->y);
 
     switch (this->lastMove) {
         case Qt::Key_Up:
@@ -42,10 +43,16 @@ void Enemy::move() {
     }
 
     unsigned int rand = std::rand() % leftPossibilities.size();
-    this->boardPositionX += this->movesVector.at(leftPossibilities[rand]).x;
-    this->boardPositionY += this->movesVector.at(leftPossibilities[rand]).y;
+    this->oldBoardPos->set(this->boardPos->x, this->boardPos->y);
+    this->boardPos->add (
+                this->movesVector.at(leftPossibilities[rand]).x,
+                this->movesVector.at(leftPossibilities[rand]).y
+    );
+
+    // this->boardPos->x += this->movesVector.at(leftPossibilities[rand]).x;
+    // this->boardPos->y += this->movesVector.at(leftPossibilities[rand]).y;
     this->lastMove = leftPossibilities[rand];
-    this->environment->setStateBox(this->boardPositionX, this->boardPositionY, BoxState::ENEMY);
+    this->environment->setStateBox(this->boardPos->x, this->boardPos->y, BoxState::ENEMY);
 
     possibleMoves.clear();
 }

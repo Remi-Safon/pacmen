@@ -4,6 +4,7 @@
 
 GameManager::GameManager(QWidget* parent)
 {
+    std::srand(std::time(nullptr));
     isPlaying = false;
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -52,6 +53,8 @@ void GameManager::newGame(){
 
     isPlaying = true;
 
+    initItems();
+
     changeLivesHUD();
     changeScoreHUD();
     environmentUI();
@@ -64,7 +67,7 @@ void GameManager::newGame(){
 }
 
 void GameManager::testThread() {
-    while (1) {
+    while (!this->gameOver()) {
         qDebug("testThread");
         this->environment->init();
         for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
@@ -84,12 +87,15 @@ void GameManager::testThread() {
 
 }
 
-void GameManager::gameLoop(){
-    while (1) {
+void GameManager::gameLoop() {
+    while (!this->gameOver() && isPlaying) {
         this->environment->init();
+        displayItems();
         for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
             (*it)->move();
         }
+
+        checkCollision();
 
         changeLivesHUD();
         changeScoreHUD();
@@ -98,6 +104,15 @@ void GameManager::gameLoop(){
         Sleep(500);
     }
 
+
+}
+
+void GameManager::checkCollision() {
+    for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
+        if (this->player->isCollision(*it)) {
+            this->player->loseLive();
+        }
+    }
 
 }
 
@@ -150,7 +165,7 @@ void GameManager::changeScoreHUD(){
 }
 
 void GameManager::changeLivesHUD(){
-    livesText->setPlainText(QString("LIVES: ")+QString::number(player->loseLive()));
+    livesText->setPlainText(QString("LIVES: ")+QString::number(player->getLives()));
 }
 
 void GameManager::hudLoad()
@@ -254,6 +269,25 @@ void GameManager::keyPressEvent(QKeyEvent *event)
     if(isPlaying){
         qDebug ("keyPressEvent\n");
         this->player->setNextMove(Qt::Key(event->key()));
+    }
+}
+void GameManager::initItems() {
+    for (int y = 0; y < this->environment->boardSizeY; y++) {
+        for (int x = 0; x < this->environment->boardSizeX; x++) {
+            int rand = std::rand() % NB_BOARDS;
+            if (this->environment->getBoxState(x, y) == BoxState::FREE) {
+                if (rand > 8) {
+                    this->items.push_back(new Gold(x, y));
+                } else {
+                    this->items.push_back(new Food(x, y));
+                }
+            }
+        }
+    }
+}
+void GameManager::displayItems() {
+    for (std::list<Item*>::iterator it = this->items.begin(); it != items.end(); ++it) {
+        (*it)->place();
     }
 }
 

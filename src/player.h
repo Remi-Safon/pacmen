@@ -12,6 +12,7 @@ class Player : public Character {
 private:
     int lives;
     Qt::Key nextMove;
+    void checkEat();
 
 public:
     Player(int x, int y);
@@ -20,10 +21,11 @@ public:
     // override functions
     void move();
 
-
+    int nbGold;
     int loseLive();
     void setNextMove(Qt::Key nextMove);
     bool isAlive();
+    int getLives();
 };
 
 #endif // PLAYER_H

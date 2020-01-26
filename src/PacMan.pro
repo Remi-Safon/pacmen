@@ -27,6 +27,9 @@ CONFIG += c++11
 SOURCES += \
     boardservice.cpp \
     character.cpp \
+    food.cpp \
+    gold.cpp \
+    item.cpp \
         main.cpp \
     player.cpp \
     enemy.cpp \
@@ -40,6 +43,9 @@ HEADERS += \
     boardservice.h \
     boxstate.h \
     character.h \
+    food.h \
+    gold.h \
+    item.h \
     player.h \
     enemy.h \
     gamemanager.h \
