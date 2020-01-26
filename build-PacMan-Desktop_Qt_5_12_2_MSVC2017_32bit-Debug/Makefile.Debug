@@ -362,6 +362,8 @@ debug\moc_gamemanager.cpp: ..\src\gamemanager.h \
 		..\src\item.h \
 		..\src\gold.h \
 		..\src\food.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\QThread \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qthread.h \
 		debug\moc_predefs.h \
 		C:\Qt\5.12.2\msvc2017\bin\moc.exe
 	C:\Qt\5.12.2\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include D:/DOCUMENTS/DEV/pacmen/build-PacMan-Desktop_Qt_5_12_2_MSVC2017_32bit-Debug/debug/moc_predefs.h -IC:/Qt/5.12.2/msvc2017/mkspecs/win32-msvc -ID:/DOCUMENTS/DEV/pacmen/src -IC:/Qt/5.12.2/msvc2017/include -IC:/Qt/5.12.2/msvc2017/include/QtWidgets -IC:/Qt/5.12.2/msvc2017/include/QtGui -IC:/Qt/5.12.2/msvc2017/include/QtANGLE -IC:/Qt/5.12.2/msvc2017/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\cppwinrt" ..\src\gamemanager.h -o debug\moc_gamemanager.cpp
@@ -1078,7 +1080,9 @@ debug\main.obj: ..\src\main.cpp C:\Qt\5.12.2\msvc2017\include\QtWidgets\QApplica
 		C:\Qt\5.12.2\msvc2017\include\QtCore\qbasictimer.h \
 		..\src\item.h \
 		..\src\gold.h \
-		..\src\food.h
+		..\src\food.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\QThread \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qthread.h
 
 debug\player.obj: ..\src\player.cpp ..\src\player.h \
 		C:\Qt\5.12.2\msvc2017\include\QtWidgets\QWidget \
@@ -1427,6 +1431,8 @@ debug\gamemanager.obj: ..\src\gamemanager.cpp ..\src\gamemanager.h \
 		..\src\item.h \
 		..\src\gold.h \
 		..\src\food.h \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\QThread \
+		C:\Qt\5.12.2\msvc2017\include\QtCore\qthread.h \
 		..\src\button.h \
 		C:\Qt\5.12.2\msvc2017\include\QtWidgets\QGraphicsRectItem \
 		C:\Qt\5.12.2\msvc2017\include\QtWidgets\QGraphicsSceneMouseEvent \

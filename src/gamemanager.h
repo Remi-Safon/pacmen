@@ -19,8 +19,9 @@
 #include "item.h"
 #include "gold.h"
 #include "food.h"
+#include <QThread>
 
-class GameManager: public QGraphicsView
+class GameManager: public QGraphicsView //, public QThread
 {
     Q_OBJECT
 public:
@@ -74,7 +75,10 @@ public slots:
     void resumeGame();
     void goMainMenu();
     void keyPressEvent(QKeyEvent *event);
-
+/*
+protected:
+    void run();
+*/
 };
 
 #endif // GAMEMANAGER_H

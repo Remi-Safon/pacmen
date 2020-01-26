@@ -77,21 +77,6 @@ void Player::move() {
 
 void Player::setNextMove(Qt::Key nextMove) {
     this->nextMove = nextMove;
-    switch (this->nextMove) {
-        case Qt::Key_Up:
-            qDebug("UP");
-        break;
-        case Qt::Key_Down:
-            qDebug("DOWN");
-        break;
-        case Qt::Key_Left:
-            qDebug("LEFT");
-        break;
-        case Qt::Key_Right:
-            qDebug("RIGHT");
-        break;
-    }
-
 }
 
 bool Player::isAlive() {
@@ -105,6 +90,6 @@ void Player::checkEat() {
         this->nbGold++;
     }
 }
-void Player::canEatGhost() {
-    ghostEater = true;
+void Player::canEatGhost(bool b) {
+    ghostEater = b;
 }

@@ -210,16 +210,9 @@ QImage Environment::display(){
                     }
                     break;
             }
-            //image.setPixel(x,y,argb);
+
         }
     }
-    /*for(int i = 0; i < BOARD_X; i++){
-        for(int n = 0; n < BOARD_Y; n++){
-            qDebug () << image.pixel(i,n);
-        }
-    }*/
-
-   // QImage::save ( const QString & fileName, const char * format = 0, int quality = -1 )
     if(animIndex == 0){
         animIndex = 1;
     } else {

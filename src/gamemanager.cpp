@@ -69,7 +69,11 @@ void GameManager::newGame(){
     // t.join();
 
 }
-
+/*
+void GameManager::run() {
+    gameLoop();
+}
+*/
 void GameManager::gameLoop() {
 
 
@@ -87,18 +91,26 @@ void GameManager::gameLoop() {
         environmentUI();
 
         QApplication::processEvents();
-        Sleep(100);
-
+        Sleep(150);
     }
     setScene(this->sceneEnd);
     endMenuDisplay(this->player->isAlive());
 }
 
 void GameManager::checkCollision() {
+    Character* eatedGhost = 0;
     for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
         if (this->player->isCollision(*it)) {
-            this->player->loseLive();
+            if (player->ghostEater) {
+                eatedGhost = *it;
+            } else {
+                this->player->loseLive();
+            }
         }
+    }
+    if (eatedGhost != 0) {
+        this->characters.remove(eatedGhost);
+        this->player->canEatGhost(false);
     }
 
 }
@@ -271,34 +283,31 @@ void GameManager::environmentUI(){
     map = new QImage(environment->display());
     int txPos = (this->width()/2 - scoreText->boundingRect().width()/2)-100;
     int tyPos = 80;
-    std::string s = "C:/Users/remis/Desktop/MERDE/test";
-    s+= std::to_string(i++);
-    s+= ".png";
 
-    map->save(s.c_str());
     item = new QGraphicsPixmapItem( QPixmap::fromImage(*map));
     item->setScale(5);
     item->setPos(txPos,tyPos);
     sceneGame->addItem(item);
+
+    delete map;
 }
 
 void GameManager::keyPressEvent(QKeyEvent *event)
 {
-    //CREER UNE VARIABLE D'ETAT -> isPlaying
     if(isPlaying){
-        qDebug ("keyPressEvent\n");
         this->player->setNextMove(Qt::Key(event->key()));
     }
 }
 void GameManager::initItems() {
+    int nbFood = 4;
     for (int y = 0; y < this->environment->boardSizeY; y++) {
         for (int x = 0; x < this->environment->boardSizeX; x++) {
             int rand = std::rand() % 10;
             if (this->environment->getBoxState(x, y) == BoxState::FREE) {
-                if (rand < 9) {
-                    this->items.push_back(new Gold(x, y));
-                } else {
+                if (rand < 1 && nbFood-- > 0) {
                     this->items.push_back(new Food(x, y));
+                } else {
+                    this->items.push_back(new Gold(x, y));
                 }
             }
         }
@@ -315,9 +324,8 @@ void GameManager::hitItems() {
         if ((*it)->isHitByPlayer()) {
             if ((*it)->characterType == BoxState::GOLD) {
                 this->player->nbGold++;
-                qDebug("mabit : %d", this->player->nbGold);
             } else  if ((*it)->characterType == BoxState::FOOD) {
-                this->player->canEatGhost();
+                this->player->canEatGhost(true);
             }
             deletedItem.push_back((*it));
             // this->items.remove((*it));

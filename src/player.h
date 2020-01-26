@@ -23,7 +23,7 @@ public:
 
     int nbGold;
     bool ghostEater;
-    void canEatGhost();
+    void canEatGhost(bool b);
     int loseLive();
     void setNextMove(Qt::Key nextMove);
     bool isAlive();
