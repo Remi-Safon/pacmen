@@ -18,6 +18,10 @@ GameManager::GameManager(QWidget* parent)
 
     scenePause = new QGraphicsScene();
     scenePause->setSceneRect(0,0,800,900);
+
+    sceneEnd = new QGraphicsScene();
+    sceneEnd->setSceneRect(0,0,800,900);
+
     i = 1;
 
     setScene(scene);
@@ -79,7 +83,7 @@ void GameManager::testThread() {
 
         QApplication::processEvents();
 
-        Sleep(500);
+        Sleep(300);
     }
 
 }
@@ -90,15 +94,13 @@ void GameManager::gameLoop(){
         for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
             (*it)->move();
         }
-
         changeLivesHUD();
         changeScoreHUD();
         environmentUI();
+
         QApplication::processEvents();
-        Sleep(500);
+        Sleep(300);
     }
-
-
 }
 
 bool GameManager::gameOver () {
@@ -150,7 +152,7 @@ void GameManager::changeScoreHUD(){
 }
 
 void GameManager::changeLivesHUD(){
-    livesText->setPlainText(QString("LIVES: ")+QString::number(player->loseLive()));
+    livesText->setPlainText(QString("LIVES: ")+QString::number(3));
 }
 
 void GameManager::hudLoad()
@@ -227,6 +229,37 @@ void GameManager::pauseMenuDisplay(){
     scenePause->addItem(quitButton);
 }
 
+void GameManager::endMenuDisplay(bool win){
+    sceneEnd->clear();
+    if(win){
+        QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Congratulations!"));
+        int txPos = this->width()/2 - titleText->boundingRect().width()/2;
+        int tyPos = 150;
+        titleText->setPos(txPos,tyPos);
+        sceneEnd->addItem(titleText);
+
+    } else {
+        QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("You lose..."));
+        int txPos = this->width()/2 - titleText->boundingRect().width()/2;
+        int tyPos = 150;
+        titleText->setPos(txPos,tyPos);
+        sceneEnd->addItem(titleText);
+
+    }
+    scoreText = new QGraphicsTextItem(QString("Your Score: 0"));
+    int txPos = this->width()/2 - scoreText->boundingRect().width()/2;
+    int tyPos = 180;
+    scoreText->setPos(txPos,tyPos);
+    sceneEnd->addItem(scoreText);
+
+    Button* quitButton = new Button(QString("Main menu"));
+    int qxPos = this->width()/2-quitButton->boundingRect().width()/2;
+    int qyPos = 350;
+    quitButton->setPos(qxPos,qyPos);
+    connect(quitButton,SIGNAL(clicked()),this,SLOT(goMainMenu()));
+    sceneEnd->addItem(quitButton);
+}
+
 void GameManager::environmentUI(){
     //QImage map ("C:/Users/Shana/Pictures/test.png");
     /*for(int i = 0; i < map.width(); i++){
@@ -243,7 +276,7 @@ void GameManager::environmentUI(){
 
     map->save(s.c_str());
     item = new QGraphicsPixmapItem( QPixmap::fromImage(*map));
-    item->setScale(28);
+    item->setScale(5);
     item->setPos(txPos,tyPos);
     sceneGame->addItem(item);
 }

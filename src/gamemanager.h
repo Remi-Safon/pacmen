@@ -25,6 +25,8 @@ public:
     void mainMenuDisplay();
     void pauseMenuDisplay();
 
+    void endMenuDisplay(bool);
+
     void hudLoad();
 
     void environmentUI();
@@ -43,6 +45,7 @@ public:
     QGraphicsScene* scene;
     QGraphicsScene* scenePause;
     QGraphicsScene* sceneGame;
+    QGraphicsScene* sceneEnd;
     QGraphicsTextItem* scoreText;
     QGraphicsTextItem* livesText;
     QImage* map;
