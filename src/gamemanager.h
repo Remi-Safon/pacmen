@@ -1,10 +1,12 @@
 #pragma once
 
-// if running on Windows
-// #include <Windows.h>
-
-// if running on Mac
-#include <unistd.h>
+#ifdef _WIN32
+    // if running on Windows
+    #include <windows.h>
+#else
+    // if running on Mac
+    #include <unistd.h>
+#endif // _WIN32
 
 #include <QGraphicsView>
 #include <QGraphicsScene>

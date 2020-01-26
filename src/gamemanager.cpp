@@ -2,6 +2,17 @@
 #include "button.h"
 #include "boardservice.h"
 
+void sleep(int sleepTime)
+{
+    #ifdef _WIN32
+        // if running on Windows
+        Sleep(sleepTime);
+    #else
+        // if running on Unix-like / POSIX (Mac, Linux...)
+        usleep(sleepTime);
+    #endif // _WIN32
+}
+
 GameManager::GameManager(QWidget* parent)
 {
     std::srand(std::time(nullptr));
@@ -85,12 +96,7 @@ void GameManager::gameLoop()
         environmentUI();
 
         QApplication::processEvents();
-
-        // if running on Windows
-        // Sleep(100);
-
-        // if running on Mac or Linux
-        usleep(100);
+        sleep(100);
     }
     setScene(this->sceneEnd);
     endMenuDisplay(this->player->isAlive());
