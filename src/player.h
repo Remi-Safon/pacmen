@@ -19,6 +19,8 @@ public:
 
     // override functions
     void move();
+
+
     int loseLive();
     void setNextMove(Qt::Key nextMove);
     bool isAlive();

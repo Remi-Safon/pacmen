@@ -56,26 +56,27 @@ void GameManager::newGame(){
     changeScoreHUD();
     environmentUI();
 
-     int i = 0;
-    while(1) { //!this->gameOver()
-        update();
-    }
+
+    gameLoop();
 
 
 }
 
-void GameManager::update(){
-    QApplication::processEvents();
-    this->environment->init();
-    for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
-        (*it)->move();
+void GameManager::gameLoop(){
+    while (1) {
+        this->environment->init();
+        for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
+            (*it)->move();
+        }
+
+        changeLivesHUD();
+        changeScoreHUD();
+        environmentUI();
+        QApplication::processEvents();
+        Sleep(500);
     }
 
-    changeLivesHUD();
-    changeScoreHUD();
-    environmentUI();
 
-    Sleep(500);
 }
 
 bool GameManager::gameOver () {

@@ -94,7 +94,6 @@ BoxState Environment::getBoxState(int x, int y) {
 }
 
 QImage Environment::display(){
-    qDebug () << "Display Map Here" << endl;
 
     QImage image( BOARD_X, BOARD_Y, QImage::Format_RGB32 );
 

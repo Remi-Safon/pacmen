@@ -13,6 +13,7 @@
 #include "enemy.h"
 #include "environment.h"
 #include <Windows.h>
+#include <thread>
 
 class GameManager: public QGraphicsView
 {
@@ -30,7 +31,7 @@ public:
     void changeScoreHUD();
     void changeLivesHUD();
 
-    void update();
+    void gameLoop();
 
     bool gameOver();
     int i;

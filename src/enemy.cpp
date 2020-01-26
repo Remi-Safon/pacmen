@@ -42,7 +42,6 @@ void Enemy::move() {
     }
 
     unsigned int rand = std::rand() % leftPossibilities.size();
-    qDebug("rand : %d", rand);
     this->boardPositionX += this->movesVector.at(leftPossibilities[rand]).x;
     this->boardPositionY += this->movesVector.at(leftPossibilities[rand]).y;
     this->lastMove = leftPossibilities[rand];

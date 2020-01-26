@@ -19,29 +19,30 @@ void Player::move() {
     possibleMoves[Qt::Key_Right] = this->environment->getBoxState(this->boardPositionX + 1, this->boardPositionY);
     possibleMoves[Qt::Key_Left] = this->environment->getBoxState(this->boardPositionX - 1, this->boardPositionY);
 
+    switch (this->lastMove) {
+        case Qt::Key_Up:
+            possibleMoves.erase(Qt::Key_Down);
+        break;
+        case Qt::Key_Down:
+            possibleMoves.erase(Qt::Key_Up);
+        break;
+        case Qt::Key_Left:
+            possibleMoves.erase(Qt::Key_Right);
+        break;
+        case Qt::Key_Right:
+            possibleMoves.erase(Qt::Key_Left);
+        break;
+    }
 
-   if (this->nextMove != Qt::Key_0 && possibleMoves[this->nextMove] != BoxState::WALL) {
+
+   if (this->nextMove != Qt::Key_0 && possibleMoves.count(this->nextMove) > 0 && possibleMoves[this->nextMove] != BoxState::WALL) {
        this->boardPositionX += this->movesVector.at(this->nextMove).x;
        this->boardPositionY += this->movesVector.at(this->nextMove).y;
        this->lastMove = this->nextMove;
-   } else if (this->nextMove != Qt::Key_0 && possibleMoves[this->lastMove] != BoxState::WALL) {
+   } else if (this->lastMove != Qt::Key_0 && possibleMoves.count(this->lastMove) > 0 && possibleMoves[this->lastMove] != BoxState::WALL) {
        this->boardPositionX += this->movesVector.at(this->lastMove).x;
        this->boardPositionY += this->movesVector.at(this->lastMove).y;
    } else {
-       switch (this->lastMove) {
-           case Qt::Key_Up:
-               possibleMoves.erase(Qt::Key_Down);
-           break;
-           case Qt::Key_Down:
-               possibleMoves.erase(Qt::Key_Up);
-           break;
-           case Qt::Key_Left:
-               possibleMoves.erase(Qt::Key_Right);
-           break;
-           case Qt::Key_Right:
-               possibleMoves.erase(Qt::Key_Left);
-           break;
-       }
 
        std::vector<Qt::Key> leftPossibilities;
 
@@ -52,7 +53,7 @@ void Player::move() {
        }
 
        unsigned int rand = std::rand() % leftPossibilities.size();
-       qDebug("rand : %d", rand);
+
        this->boardPositionX += this->movesVector.at(leftPossibilities[rand]).x;
        this->boardPositionY += this->movesVector.at(leftPossibilities[rand]).y;
        this->lastMove = leftPossibilities[rand];
@@ -65,6 +66,21 @@ void Player::move() {
 
 void Player::setNextMove(Qt::Key nextMove) {
     this->nextMove = nextMove;
+    switch (this->nextMove) {
+        case Qt::Key_Up:
+            qDebug("UP");
+        break;
+        case Qt::Key_Down:
+            qDebug("DOWN");
+        break;
+        case Qt::Key_Left:
+            qDebug("LEFT");
+        break;
+        case Qt::Key_Right:
+            qDebug("RIGHT");
+        break;
+    }
+
 }
 
 bool Player::isAlive() {
