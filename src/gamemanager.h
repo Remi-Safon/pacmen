@@ -8,9 +8,11 @@
 #include <QDebug>
 #include <QImage>
 #include <QLabel>
+#include <QApplication>
 #include "player.h"
 #include "enemy.h"
 #include "environment.h"
+#include <Windows.h>
 
 class GameManager: public QGraphicsView
 {
@@ -28,6 +30,11 @@ public:
     void changeScoreHUD();
     void changeLivesHUD();
 
+    void update();
+
+    bool gameOver();
+    int i;
+
 
     QGraphicsScene* scene;
     QGraphicsScene* scenePause;
@@ -36,6 +43,8 @@ public:
     QGraphicsTextItem* livesText;
 
     Environment* environment;
+
+    std::list<Character*> characters;
 
     Player* player; //needs scene to load itself and progress itself?
     Enemy* ghost1;

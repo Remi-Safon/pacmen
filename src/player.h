@@ -5,6 +5,7 @@
 #include <QKeyEvent>
 #include <QDebug>
 #include "character.h"
+#include <vector.h>
 
 
 class Player : public Character {
@@ -20,6 +21,7 @@ public:
     void move();
     int loseLive();
     void setNextMove(Qt::Key nextMove);
+    bool isAlive();
 };
 
 #endif // PLAYER_H

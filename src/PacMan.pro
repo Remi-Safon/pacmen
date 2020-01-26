@@ -33,17 +33,20 @@ SOURCES += \
     gamemanager.cpp \
     environment.cpp \
     menu.cpp \
-    button.cpp
+    button.cpp \
+    vector.cpp
 
 HEADERS += \
     boardservice.h \
+    boxstate.h \
     character.h \
     player.h \
     enemy.h \
     gamemanager.h \
     environment.h \
     menu.h \
-    button.h
+    button.h \
+    vector.h
 
 FORMS +=
 

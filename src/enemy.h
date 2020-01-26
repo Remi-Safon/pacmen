@@ -10,6 +10,7 @@ public:
 
     // override functions
     void move();
+    void move2();
 };
 
 #endif // ENEMY_H

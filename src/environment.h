@@ -10,6 +10,11 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 #include <QImage>
+#include <cstdlib>
+#include <iostream>
+#include <ctime>
+
+#include <boxstate.h>
 
 #define BOARD_X 19
 #define BOARD_Y 29
@@ -18,20 +23,17 @@
 
 using namespace std;
 
-enum class  BoxState {
-    FREE = 0,
-    WALL = 1,
-    PLAYER = 2,
-    ENNEMIES = 3,
-    FOOD = 4
-};
+
 
 class Environment {
 public:
     BoxState board [BOARD_Y][BOARD_X];
+    int indexBoard;
     string toString();
     Environment();
-
+    void setStateBox(int x, int y, BoxState state);
+    BoxState getBoxState(int x, int y);
+    void init();
     QImage display();
 };
 

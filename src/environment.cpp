@@ -8,7 +8,7 @@ BoxState BOARDS [NB_BOARDS][BOARD_Y][BOARD_X] = {
         { BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL },
         { BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL },
         { BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL },
-        { BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL },
+        { BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL },
         { BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL },
         { BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL },
         { BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE },
@@ -30,8 +30,8 @@ BoxState BOARDS [NB_BOARDS][BOARD_Y][BOARD_X] = {
         { BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL },
         { BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE },
         { BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE },
-        { BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL },
-        { BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL }
+        { BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL },
+        { BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL }
     },
     {
         { BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL },
@@ -70,14 +70,27 @@ BoxState BOARDS [NB_BOARDS][BOARD_Y][BOARD_X] = {
 Environment::Environment()
 {
     // initialization of the board
-    int indexBoard = rand() % NB_BOARDS;
-    qDebug ("INDEX ::::: %d", indexBoard);
+    std::srand(std::time(nullptr)); // use current time as seed for random generator
+    // this->indexBoard = rand() % NB_BOARDS;
+    this->indexBoard = 0;
+    this->init();
+
+}
+void Environment::init() {
     for (int y = 0; y < BOARD_Y; y++) {
         for (int x = 0; x < BOARD_X; x++) {
                 //change 1st index to indexBoard for random map
-               this->board[y][x] = BOARDS [0][y][x];
+               this->board[y][x] = BOARDS [this->indexBoard][y][x];
         }
     }
+}
+
+
+void Environment::setStateBox(int x, int y, BoxState state) {
+    this->board[y][x] = state;
+}
+BoxState Environment::getBoxState(int x, int y) {
+    return this->board[y][x];
 }
 
 QImage Environment::display(){
@@ -89,20 +102,20 @@ QImage Environment::display(){
         for (int x = 0; x < BOARD_X; x++) {
             QRgb argb = qRgb(1,0,0);
             //1PX -> 5/5PX
-            switch ((int)this->board[y][x]) {
-                case 0:
+            switch (this->board[y][x]) {
+                case BoxState::FREE:
                     argb = qRgb(0,0,0);
                     break;
-                case 1:
+                case BoxState::WALL:
                     argb = qRgb(0,0,255);
                     break;
-                case 2:
+                case BoxState::PLAYER:
                     argb = qRgb(0,255,0);
                     break;
-                case 3:
+                case BoxState::ENEMY:
                     argb = qRgb(255,0,0);
                     break;
-                case 4:
+                case BoxState::FOOD:
                     argb = qRgb(1,0,0);
                     break;
             }

@@ -18,6 +18,7 @@ GameManager::GameManager(QWidget* parent)
 
     scenePause = new QGraphicsScene();
     scenePause->setSceneRect(0,0,800,900);
+    i = 1;
 
     setScene(scene);
 
@@ -37,21 +38,48 @@ void GameManager::newGame(){
 
     environment = BoardService::getInstance();
 
-    player = new Player(10, 17);
-    ghost1 = new Enemy(10, 13);
-    ghost2 = new Enemy(10, 14);
-    ghost3 = new Enemy(11, 13);
-    ghost4 = new Enemy(11, 14);
+    player = new Player(9, 19);
+    ghost1 = new Enemy(9, 10);
+    ghost2 = new Enemy(10, 10);
+    ghost3 = new Enemy(8, 10);
+    ghost4 = new Enemy(11, 10);
+
+    characters.push_back(this->player);
+    characters.push_back(this->ghost1);
+    characters.push_back(this->ghost2);
+    characters.push_back(this->ghost3);
+    characters.push_back(this->ghost4);
 
     isPlaying = true;
 
     changeLivesHUD();
     changeScoreHUD();
-
-    //qDebug ("Print environment :\n %s", environment->toString().c_str());
-
     environmentUI();
 
+     int i = 0;
+    while(1) { //!this->gameOver()
+        update();
+    }
+
+
+}
+
+void GameManager::update(){
+    QApplication::processEvents();
+    this->environment->init();
+    for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
+        (*it)->move();
+    }
+
+    changeLivesHUD();
+    changeScoreHUD();
+    environmentUI();
+
+    Sleep(500);
+}
+
+bool GameManager::gameOver () {
+    return (this->player->isAlive() ? false : true);
 }
 
 void GameManager::quitGame()
@@ -186,7 +214,11 @@ void GameManager::environmentUI(){
     QImage map(environment->display());
     int txPos = (this->width()/2 - scoreText->boundingRect().width()/2)-100;
     int tyPos = 80;
-    //map.save("C:/Users/Shana/Pictures/test.png");
+    std::string s = "C:/Users/remis/Desktop/MERDE/test";
+    s+= std::to_string(i++);
+    s+= ".png";
+
+    map.save(s.c_str());
     QGraphicsPixmapItem* item = new QGraphicsPixmapItem( QPixmap::fromImage(map));
     item->setScale(28);
     item->setPos(txPos,tyPos);
@@ -199,9 +231,6 @@ void GameManager::keyPressEvent(QKeyEvent *event)
     if(isPlaying){
         qDebug ("keyPressEvent\n");
         this->player->setNextMove(Qt::Key(event->key()));
-
-        //SI CASE != MUR
-        this->player->move();
     }
 }
 
