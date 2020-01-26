@@ -29,25 +29,18 @@ public:
     void mainMenuDisplay();
     void pauseMenuDisplay();
     void checkCollision();
-
+    void endMenuDisplay(bool);
     void hudLoad();
-
     void environmentUI();
-
     void changeScoreHUD();
     void changeLivesHUD();
-
     void gameLoop();
-
-    void testThread();
-
     bool gameOver();
-    int i;
-
 
     QGraphicsScene* scene;
     QGraphicsScene* scenePause;
     QGraphicsScene* sceneGame;
+    QGraphicsScene* sceneEnd;
     QGraphicsTextItem* scoreText;
     QGraphicsTextItem* livesText;
     QImage* map;
@@ -66,6 +59,10 @@ public:
 
     void initItems();
     void displayItems();
+    void hitItems();
+    bool goldRemaining();
+
+    int i;
 
 
 

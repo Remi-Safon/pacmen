@@ -19,6 +19,10 @@ GameManager::GameManager(QWidget* parent)
 
     scenePause = new QGraphicsScene();
     scenePause->setSceneRect(0,0,800,900);
+
+    sceneEnd = new QGraphicsScene();
+    sceneEnd->setSceneRect(0,0,800,900);
+
     i = 1;
 
     setScene(scene);
@@ -66,45 +70,28 @@ void GameManager::newGame(){
 
 }
 
-void GameManager::testThread() {
-    while (!this->gameOver()) {
-        qDebug("testThread");
-        this->environment->init();
-        for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
-            (*it)->move();
-        }
-
-        // changeLivesHUD();
-
-        // changeScoreHUD();
-
-        environmentUI();
-
-        QApplication::processEvents();
-
-        Sleep(500);
-    }
-
-}
-
 void GameManager::gameLoop() {
+
+
     while (!this->gameOver() && isPlaying) {
+
         this->environment->init();
         displayItems();
         for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
             (*it)->move();
         }
-
+        hitItems();
         checkCollision();
-
         changeLivesHUD();
         changeScoreHUD();
         environmentUI();
+
         QApplication::processEvents();
-        Sleep(500);
+        Sleep(100);
+
     }
-
-
+    setScene(this->sceneEnd);
+    endMenuDisplay(this->player->isAlive());
 }
 
 void GameManager::checkCollision() {
@@ -117,7 +104,7 @@ void GameManager::checkCollision() {
 }
 
 bool GameManager::gameOver () {
-    return (this->player->isAlive() ? false : true);
+    return (this->player->isAlive() || this->goldRemaining() ? false : true);
 }
 
 void GameManager::quitGame()
@@ -161,7 +148,7 @@ void GameManager::goMainMenu()
 }
 
 void GameManager::changeScoreHUD(){
-    scoreText->setPlainText(QString("SCORE: ")+QString::number(100));
+    scoreText->setPlainText(QString("SCORE: ")+QString::number(this->player->nbGold));
 }
 
 void GameManager::changeLivesHUD(){
@@ -242,6 +229,38 @@ void GameManager::pauseMenuDisplay(){
     scenePause->addItem(quitButton);
 }
 
+void GameManager::endMenuDisplay(bool win){
+    sceneEnd->clear();
+    if(win){
+        QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Congratulations!"));
+        int txPos = this->width()/2 - titleText->boundingRect().width()/2;
+        int tyPos = 150;
+        titleText->setPos(txPos,tyPos);
+        sceneEnd->addItem(titleText);
+
+    } else {
+        QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("You lose..."));
+        int txPos = this->width()/2 - titleText->boundingRect().width()/2;
+        int tyPos = 150;
+        titleText->setPos(txPos,tyPos);
+        sceneEnd->addItem(titleText);
+
+    }
+    scoreText = new QGraphicsTextItem(QString("Your Score: "+QString::number(this->player->nbGold)));
+    int txPos = this->width()/2 - scoreText->boundingRect().width()/2;
+    int tyPos = 180;
+    scoreText->setPos(txPos,tyPos);
+    sceneEnd->addItem(scoreText);
+
+    Button* quitButton = new Button(QString("Main menu"));
+    int qxPos = this->width()/2-quitButton->boundingRect().width()/2;
+    int qyPos = 350;
+    quitButton->setPos(qxPos,qyPos);
+    connect(quitButton,SIGNAL(clicked()),this,SLOT(goMainMenu()));
+    sceneEnd->addItem(quitButton);
+
+}
+
 void GameManager::environmentUI(){
     //QImage map ("C:/Users/Shana/Pictures/test.png");
     /*for(int i = 0; i < map.width(); i++){
@@ -258,7 +277,7 @@ void GameManager::environmentUI(){
 
     map->save(s.c_str());
     item = new QGraphicsPixmapItem( QPixmap::fromImage(*map));
-    item->setScale(28);
+    item->setScale(5);
     item->setPos(txPos,tyPos);
     sceneGame->addItem(item);
 }
@@ -274,9 +293,9 @@ void GameManager::keyPressEvent(QKeyEvent *event)
 void GameManager::initItems() {
     for (int y = 0; y < this->environment->boardSizeY; y++) {
         for (int x = 0; x < this->environment->boardSizeX; x++) {
-            int rand = std::rand() % NB_BOARDS;
+            int rand = std::rand() % 10;
             if (this->environment->getBoxState(x, y) == BoxState::FREE) {
-                if (rand > 8) {
+                if (rand < 9) {
                     this->items.push_back(new Gold(x, y));
                 } else {
                     this->items.push_back(new Food(x, y));
@@ -290,4 +309,33 @@ void GameManager::displayItems() {
         (*it)->place();
     }
 }
+void GameManager::hitItems() {
+    std::vector<Item*> deletedItem;
+    for (std::list<Item*>::iterator it = this->items.begin(); it != items.end(); ++it) {
+        if ((*it)->isHitByPlayer()) {
+            if ((*it)->characterType == BoxState::GOLD) {
+                this->player->nbGold++;
+                qDebug("mabit : %d", this->player->nbGold);
+            } else  if ((*it)->characterType == BoxState::FOOD) {
+                this->player->canEatGhost();
+            }
+            deletedItem.push_back((*it));
+            // this->items.remove((*it));
+        }
+    }
 
+    for(std::vector<Item*>::iterator it = deletedItem.begin(); it != deletedItem.end(); ++it) {
+        this->items.remove((*it));
+    }
+
+    deletedItem.clear();
+}
+
+bool GameManager::goldRemaining() {
+    for (std::list<Item*>::iterator it = this->items.begin(); it != items.end(); ++it) {
+        if ((*it)->characterType == BoxState::GOLD) {
+            return true;
+        }
+    }
+    return false;
+}

@@ -3,6 +3,7 @@
 Player::Player(int x, int y) : Character(x, y) {
     lives = 3;
     nbGold = 0;
+    ghostEater = false;
     this->nextMove = Qt::Key_0;
     this->characterType = BoxState::PLAYER;
     this->environment->setStateBox(x, y, BoxState::PLAYER);
@@ -23,30 +24,33 @@ void Player::move() {
     possibleMoves[Qt::Key_Right] = this->environment->getBoxState(this->boardPos->x + 1, this->boardPos->y);
     possibleMoves[Qt::Key_Left] = this->environment->getBoxState(this->boardPos->x - 1, this->boardPos->y);
 
-    switch (this->lastMove) {
-        case Qt::Key_Up:
-            possibleMoves.erase(Qt::Key_Down);
-        break;
-        case Qt::Key_Down:
-            possibleMoves.erase(Qt::Key_Up);
-        break;
-        case Qt::Key_Left:
-            possibleMoves.erase(Qt::Key_Right);
-        break;
-        case Qt::Key_Right:
-            possibleMoves.erase(Qt::Key_Left);
-        break;
-    }
 
-
-   if (this->nextMove != Qt::Key_0 && possibleMoves.count(this->nextMove) > 0 && possibleMoves[this->nextMove] != BoxState::WALL) {
-       this->boardPos->x += this->movesVector.at(this->nextMove).x;
-       this->boardPos->y += this->movesVector.at(this->nextMove).y;
+   if (this->nextMove != Qt::Key_0 && possibleMoves[this->nextMove] != BoxState::WALL) {
+       this->boardPos->add (
+                   this->movesVector.at(this->nextMove).x,
+                   this->movesVector.at(this->nextMove).y
+       );
        this->lastMove = this->nextMove;
-   } else if (this->lastMove != Qt::Key_0 && possibleMoves.count(this->lastMove) > 0 && possibleMoves[this->lastMove] != BoxState::WALL) {
-       this->boardPos->x += this->movesVector.at(this->lastMove).x;
-       this->boardPos->y += this->movesVector.at(this->lastMove).y;
-   } else {
+   } else if (this->lastMove != Qt::Key_0 && possibleMoves[this->lastMove] != BoxState::WALL) {
+       this->boardPos->add (
+                   this->movesVector.at(this->lastMove).x,
+                   this->movesVector.at(this->lastMove).y
+       );
+   } else {/*
+       switch (this->lastMove) {
+           case Qt::Key_Up:
+               possibleMoves.erase(Qt::Key_Down);
+           break;
+           case Qt::Key_Down:
+               possibleMoves.erase(Qt::Key_Up);
+           break;
+           case Qt::Key_Left:
+               possibleMoves.erase(Qt::Key_Right);
+           break;
+           case Qt::Key_Right:
+               possibleMoves.erase(Qt::Key_Left);
+           break;
+       }
 
        std::vector<Qt::Key> leftPossibilities;
 
@@ -63,7 +67,7 @@ void Player::move() {
                    this->movesVector.at(leftPossibilities[rand]).y
        );
        this->lastMove = leftPossibilities[rand];
-
+*/
    }
    this->checkEat();
    this->environment->setStateBox(this->boardPos->x, this->boardPos->y, BoxState::PLAYER);
@@ -100,4 +104,7 @@ void Player::checkEat() {
     if (this->environment->getBoxState(this->boardPos->x, this->boardPos->y) == BoxState::GOLD) {
         this->nbGold++;
     }
+}
+void Player::canEatGhost() {
+    ghostEater = true;
 }

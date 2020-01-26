@@ -28,6 +28,7 @@ using namespace std;
 class Environment {
 public:
     BoxState board [BOARD_Y][BOARD_X];
+    int animIndex = 0;
     int indexBoard;
     string toString();
     Environment();

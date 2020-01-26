@@ -66,6 +66,63 @@ BoxState BOARDS [NB_BOARDS][BOARD_Y][BOARD_X] = {
     }
 };
 
+QRgb rgbWall [5][5] = {
+    {qRgb(0,0,255),qRgb(0,0,255),qRgb(0,0,255),qRgb(0,0,255),qRgb(0,0,255)},
+    {qRgb(0,0,255),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,255)},
+    {qRgb(0,0,255),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,255)},
+    {qRgb(0,0,255),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,255)},
+    {qRgb(0,0,255),qRgb(0,0,255),qRgb(0,0,255),qRgb(0,0,255),qRgb(0,0,255)}
+};
+
+QRgb rgbEnemy [2][5][5] = {
+    {
+        {qRgb(0,0,1),qRgb(255,0,0),qRgb(255,0,0),qRgb(255,0,0),qRgb(0,0,1)},
+        {qRgb(255,0,0),qRgb(255,0,0),qRgb(255,255,255),qRgb(255,0,0),qRgb(255,255,255)},
+        {qRgb(255,0,0),qRgb(255,0,0),qRgb(255,255,255),qRgb(255,0,0),qRgb(255,255,255)},
+        {qRgb(255,0,0),qRgb(255,0,0),qRgb(255,0,0),qRgb(255,0,0),qRgb(255,0,0)},
+        {qRgb(255,0,0),qRgb(0,0,1),qRgb(255,0,0),qRgb(0,0,1),qRgb(255,0,0)}
+    },
+    {
+        {qRgb(0,0,1),qRgb(255,0,0),qRgb(255,0,0),qRgb(255,0,0),qRgb(0,0,1)},
+        {qRgb(255,0,0),qRgb(255,255,255),qRgb(255,0,0),qRgb(255,255,255),qRgb(255,0,0)},
+        {qRgb(255,0,0),qRgb(255,255,255),qRgb(255,0,0),qRgb(255,255,255),qRgb(255,0,0)},
+        {qRgb(255,0,0),qRgb(255,0,0),qRgb(255,0,0),qRgb(255,0,0),qRgb(255,0,0)},
+        {qRgb(255,0,0),qRgb(0,0,1),qRgb(255,0,0),qRgb(0,0,1),qRgb(255,0,0)}
+    }
+};
+
+QRgb rgbPlayer [2][5][5] = {
+    {
+        {qRgb(0,0,1),qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(0,0,1)},
+        {qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0)},
+        {qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0)},
+        {qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0)},
+        {qRgb(0,0,1),qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(0,0,1)}
+    },
+    {
+        {qRgb(0,0,1),qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(0,0,1)},
+        {qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0)},
+        {qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(0,0,1),qRgb(0,0,1)},
+        {qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0)},
+        {qRgb(0,0,1),qRgb(255,255,0),qRgb(255,255,0),qRgb(255,255,0),qRgb(0,0,1)}
+    }
+};
+
+QRgb rgbGold [5][5] = {
+    {qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1)},
+    {qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1)},
+    {qRgb(0,0,1),qRgb(0,0,1),qRgb(255,255,0),qRgb(0,0,1),qRgb(0,0,1)},
+    {qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1)},
+    {qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1)}
+};
+
+QRgb rgbFood [5][5] = {
+    {qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1)},
+    {qRgb(0,0,1),qRgb(0,255,0),qRgb(0,255,0),qRgb(0,255,0),qRgb(0,0,1)},
+    {qRgb(0,0,1),qRgb(0,255,0),qRgb(0,255,0),qRgb(0,255,0),qRgb(0,0,1)},
+    {qRgb(0,0,1),qRgb(0,255,0),qRgb(0,255,0),qRgb(0,255,0),qRgb(0,0,1)},
+    {qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1)}
+};
 
 Environment::Environment() {
     // initialization of the board
@@ -95,7 +152,7 @@ BoxState Environment::getBoxState(int x, int y) {
 
 QImage Environment::display(){
 
-    QImage image( BOARD_X, BOARD_Y, QImage::Format_RGB32 );
+    QImage image( BOARD_X*5, BOARD_Y*5, QImage::Format_RGB32 );
 
     for (int y = 0; y < BOARD_Y; y++) {
         for (int x = 0; x < BOARD_X; x++) {
@@ -103,22 +160,57 @@ QImage Environment::display(){
             //1PX -> 5/5PX
             switch (this->board[y][x]) {
                 case BoxState::FREE:
-                    argb = qRgb(0,0,0);
+                    //argb = qRgb(0,0,0);
+                    for(int n = 0;n < 5; n++){
+                        for(int m = 0;m < 5; m++){
+                            argb = qRgb(0,0,0);
+                            image.setPixel(x*5+m,y*5+n,argb);
+                        }
+                    }
+
                     break;
-                case BoxState::WALL:
-                    argb = qRgb(0,0,255);
+                case BoxState::WALL:                   
+                    for(int n = 0;n < 5; n++){
+                        for(int m = 0;m < 5; m++){
+                            argb = rgbWall[n][m];
+                            image.setPixel(x*5+m,y*5+n,argb);
+                        }
+                    }
                     break;
                 case BoxState::PLAYER:
-                    argb = qRgb(0,255,0);
+                    for(int n = 0;n < 5; n++){
+                        for(int m = 0;m < 5; m++){
+                            argb = rgbPlayer[animIndex][n][m];
+                            image.setPixel(x*5+m,y*5+n,argb);
+                        }
+                    }
                     break;
                 case BoxState::ENEMY:
-                    argb = qRgb(255,0,0);
+                    for(int n = 0;n < 5; n++){
+                        for(int m = 0;m < 5; m++){
+                            argb = rgbEnemy[animIndex][n][m];
+                            image.setPixel(x*5+m,y*5+n,argb);
+                        }
+                    }
                     break;
                 case BoxState::FOOD:
-                    argb = qRgb(1,0,0);
+                    for(int n = 0;n < 5; n++){
+                        for(int m = 0;m < 5; m++){
+                            argb = rgbFood[n][m];
+                            image.setPixel(x*5+m,y*5+n,argb);
+                        }
+                    }
+                    break;
+                case BoxState::GOLD:
+                    for(int n = 0;n < 5; n++){
+                        for(int m = 0;m < 5; m++){
+                            argb = rgbGold[n][m];
+                            image.setPixel(x*5+m,y*5+n,argb);
+                        }
+                    }
                     break;
             }
-            image.setPixel(x,y,argb);
+            //image.setPixel(x,y,argb);
         }
     }
     /*for(int i = 0; i < BOARD_X; i++){
@@ -128,6 +220,11 @@ QImage Environment::display(){
     }*/
 
    // QImage::save ( const QString & fileName, const char * format = 0, int quality = -1 )
+    if(animIndex == 0){
+        animIndex = 1;
+    } else {
+        animIndex = 0;
+    }
     return image;
 }
 

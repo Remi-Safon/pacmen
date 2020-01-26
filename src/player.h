@@ -22,6 +22,8 @@ public:
     void move();
 
     int nbGold;
+    bool ghostEater;
+    void canEatGhost();
     int loseLive();
     void setNextMove(Qt::Key nextMove);
     bool isAlive();
