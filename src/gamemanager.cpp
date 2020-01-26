@@ -56,9 +56,31 @@ void GameManager::newGame(){
     changeScoreHUD();
     environmentUI();
 
+    // std::thread t(&GameManager::testThread, this);
 
     gameLoop();
+    // t.join();
 
+}
+
+void GameManager::testThread() {
+    while (1) {
+        qDebug("testThread");
+        this->environment->init();
+        for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
+            (*it)->move();
+        }
+
+        // changeLivesHUD();
+
+        // changeScoreHUD();
+
+        environmentUI();
+
+        QApplication::processEvents();
+
+        Sleep(500);
+    }
 
 }
 
@@ -212,15 +234,15 @@ void GameManager::environmentUI(){
             qDebug () << map.pixel(i,n);
         }
     }*/
-    QImage map(environment->display());
+    map = new QImage(environment->display());
     int txPos = (this->width()/2 - scoreText->boundingRect().width()/2)-100;
     int tyPos = 80;
     std::string s = "C:/Users/remis/Desktop/MERDE/test";
     s+= std::to_string(i++);
     s+= ".png";
 
-    map.save(s.c_str());
-    QGraphicsPixmapItem* item = new QGraphicsPixmapItem( QPixmap::fromImage(map));
+    map->save(s.c_str());
+    item = new QGraphicsPixmapItem( QPixmap::fromImage(*map));
     item->setScale(28);
     item->setPos(txPos,tyPos);
     sceneGame->addItem(item);

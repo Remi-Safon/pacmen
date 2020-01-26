@@ -14,6 +14,7 @@
 #include "environment.h"
 #include <Windows.h>
 #include <thread>
+#include <QTimer>
 
 class GameManager: public QGraphicsView
 {
@@ -33,6 +34,8 @@ public:
 
     void gameLoop();
 
+    void testThread();
+
     bool gameOver();
     int i;
 
@@ -42,6 +45,8 @@ public:
     QGraphicsScene* sceneGame;
     QGraphicsTextItem* scoreText;
     QGraphicsTextItem* livesText;
+    QImage* map;
+    QGraphicsPixmapItem* item;
 
     Environment* environment;
 
