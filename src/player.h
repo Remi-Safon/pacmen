@@ -1,5 +1,4 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#pragma once
 
 #include <QWidget>
 #include <QKeyEvent>
@@ -29,5 +28,3 @@ public:
     bool isAlive();
     int getLives();
 };
-
-#endif // PLAYER_H

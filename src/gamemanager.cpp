@@ -30,7 +30,8 @@ GameManager::GameManager(QWidget* parent)
     show();
 }
 
-void GameManager::newGame(){
+void GameManager::newGame()
+{
     sceneGame->clear();
     //When start
 
@@ -67,14 +68,11 @@ void GameManager::newGame(){
 
     gameLoop();
     // t.join();
-
 }
 
-void GameManager::gameLoop() {
-
-
+void GameManager::gameLoop()
+{
     while (!this->gameOver() && isPlaying) {
-
         this->environment->init();
         displayItems();
         for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
@@ -94,7 +92,8 @@ void GameManager::gameLoop() {
     endMenuDisplay(this->player->isAlive());
 }
 
-void GameManager::checkCollision() {
+void GameManager::checkCollision()
+{
     for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
         if (this->player->isCollision(*it)) {
             this->player->loseLive();
@@ -103,7 +102,8 @@ void GameManager::checkCollision() {
 
 }
 
-bool GameManager::gameOver () {
+bool GameManager::gameOver()
+{
     return (this->player->isAlive() || this->goldRemaining() ? false : true);
 }
 
@@ -147,11 +147,13 @@ void GameManager::goMainMenu()
     mainMenuDisplay();
 }
 
-void GameManager::changeScoreHUD(){
+void GameManager::changeScoreHUD()
+{
     scoreText->setPlainText(QString("SCORE: ")+QString::number(this->player->nbGold));
 }
 
-void GameManager::changeLivesHUD(){
+void GameManager::changeLivesHUD()
+{
     livesText->setPlainText(QString("LIVES: ")+QString::number(player->getLives()));
 }
 
@@ -180,8 +182,8 @@ void GameManager::hudLoad()
     sceneGame->addItem(livesText);
 }
 
-
-void GameManager::mainMenuDisplay(){
+void GameManager::mainMenuDisplay()
+{
     scene->clear();
     //Main menu UI
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Pac MEN"));
@@ -205,7 +207,8 @@ void GameManager::mainMenuDisplay(){
     scene->addItem(quitButton);
 }
 
-void GameManager::pauseMenuDisplay(){
+void GameManager::pauseMenuDisplay()
+{
     scenePause->clear();
     //Pause menu UI
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Game paused"));
@@ -229,7 +232,8 @@ void GameManager::pauseMenuDisplay(){
     scenePause->addItem(quitButton);
 }
 
-void GameManager::endMenuDisplay(bool win){
+void GameManager::endMenuDisplay(bool win)
+{
     sceneEnd->clear();
     if(win){
         QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Congratulations!"));
@@ -261,7 +265,8 @@ void GameManager::endMenuDisplay(bool win){
 
 }
 
-void GameManager::environmentUI(){
+void GameManager::environmentUI()
+{
     //QImage map ("C:/Users/Shana/Pictures/test.png");
     /*for(int i = 0; i < map.width(); i++){
         for(int n = 0; n < map.height(); n++){
@@ -290,7 +295,8 @@ void GameManager::keyPressEvent(QKeyEvent *event)
         this->player->setNextMove(Qt::Key(event->key()));
     }
 }
-void GameManager::initItems() {
+void GameManager::initItems()
+{
     for (int y = 0; y < this->environment->boardSizeY; y++) {
         for (int x = 0; x < this->environment->boardSizeX; x++) {
             int rand = std::rand() % 10;
@@ -304,12 +310,14 @@ void GameManager::initItems() {
         }
     }
 }
-void GameManager::displayItems() {
+void GameManager::displayItems()
+{
     for (std::list<Item*>::iterator it = this->items.begin(); it != items.end(); ++it) {
         (*it)->place();
     }
 }
-void GameManager::hitItems() {
+void GameManager::hitItems()
+{
     std::vector<Item*> deletedItem;
     for (std::list<Item*>::iterator it = this->items.begin(); it != items.end(); ++it) {
         if ((*it)->isHitByPlayer()) {
@@ -331,7 +339,8 @@ void GameManager::hitItems() {
     deletedItem.clear();
 }
 
-bool GameManager::goldRemaining() {
+bool GameManager::goldRemaining()
+{
     for (std::list<Item*>::iterator it = this->items.begin(); it != items.end(); ++it) {
         if ((*it)->characterType == BoxState::GOLD) {
             return true;

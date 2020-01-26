@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 class Menu
 {
@@ -7,5 +6,3 @@ public:
     Menu();
     ~Menu();
 };
-
-#endif // MENU_H

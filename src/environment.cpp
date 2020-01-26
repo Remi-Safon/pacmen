@@ -1,6 +1,5 @@
 #include "environment.h"
 
-
 BoxState BOARDS [NB_BOARDS][BOARD_Y][BOARD_X] = {
     {
         { BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL },
@@ -124,7 +123,8 @@ QRgb rgbFood [5][5] = {
     {qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1),qRgb(0,0,1)}
 };
 
-Environment::Environment() {
+Environment::Environment()
+{
     // initialization of the board
     std::srand(std::time(nullptr)); // use current time as seed for random generator
     this->indexBoard = rand() % NB_BOARDS;
@@ -132,26 +132,30 @@ Environment::Environment() {
     this->boardSizeY = BOARD_Y;
     // this->indexBoard = 0;
     this->init();
-
 }
-void Environment::init() {
+
+void Environment::init()
+{
     for (int y = 0; y < BOARD_Y; y++) {
         for (int x = 0; x < BOARD_X; x++) {
-                //change 1st index to indexBoard for random map
-               this->board[y][x] = BOARDS [this->indexBoard][y][x];
+            //change 1st index to indexBoard for random map
+            this->board[y][x] = BOARDS [this->indexBoard][y][x];
         }
     }
 }
 
-void Environment::setStateBox(int x, int y, BoxState state) {
+void Environment::setStateBox(int x, int y, BoxState state)
+{
     this->board[y][x] = state;
 }
-BoxState Environment::getBoxState(int x, int y) {
+
+BoxState Environment::getBoxState(int x, int y)
+{
     return this->board[y][x];
 }
 
-QImage Environment::display(){
-
+QImage Environment::display()
+{
     QImage image( BOARD_X*5, BOARD_Y*5, QImage::Format_RGB32 );
 
     for (int y = 0; y < BOARD_Y; y++) {
@@ -225,10 +229,12 @@ QImage Environment::display(){
     } else {
         animIndex = 0;
     }
+
     return image;
 }
 
-string Environment::toString() {
+string Environment::toString()
+{
     ostringstream ss;
 
     for (int y = 0; y < BOARD_Y; y++) {

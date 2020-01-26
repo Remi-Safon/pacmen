@@ -1,5 +1,4 @@
-#ifndef VECTOR_H
-#define VECTOR_H
+#pragma once
 
 
 class Vector {
@@ -14,5 +13,3 @@ public :
     void add(int x, int y);
     bool operator==(const Vector & v) const;
 };
-
-#endif // VECTOR_H

@@ -1,17 +1,16 @@
 #include "enemy.h"
 
-Enemy::Enemy(int x, int y) : Character(x, y) {
+Enemy::Enemy(int x, int y) : Character(x, y)
+{
     this->environment->setStateBox(x, y, BoxState::ENEMY); // ennemy placement on the board
     this->characterType = BoxState::ENEMY;
     std::srand(std::time(NULL));
 }
 
-Enemy::~Enemy() {
-}
+Enemy::~Enemy() {}
 
-
-void Enemy::move() {
-
+void Enemy::move()
+{
     std::map<Qt::Key, BoxState> possibleMoves;
     possibleMoves[Qt::Key_Up] = this->environment->getBoxState(this->boardPos->x, this->boardPos->y - 1);
     possibleMoves[Qt::Key_Down] = this->environment->getBoxState(this->boardPos->x, this->boardPos->y + 1);
@@ -39,7 +38,6 @@ void Enemy::move() {
         if (it->second != BoxState::WALL) {
             leftPossibilities.push_back(it->first);
         }
-
     }
 
     unsigned int rand = std::rand() % leftPossibilities.size();
@@ -56,4 +54,3 @@ void Enemy::move() {
 
     possibleMoves.clear();
 }
-

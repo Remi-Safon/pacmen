@@ -1,18 +1,12 @@
-#ifndef BOARDSERVICE_H
-#define BOARDSERVICE_H
+#pragma once
 
 #include "environment.h"
 
-class BoardService {
-
-private:
-    static Environment* instance;
-
+class BoardService
+{
 public:
     static Environment* getInstance();
 
+private:
+    static Environment* instance;
 };
-
-
-
-#endif // BOARDSERVICE_H

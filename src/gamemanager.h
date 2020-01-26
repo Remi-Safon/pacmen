@@ -1,5 +1,4 @@
-#ifndef GAMEMANAGER_H
-#define GAMEMANAGER_H
+#pragma once
 
 #include <QGraphicsView>
 #include <QGraphicsScene>
@@ -23,6 +22,7 @@
 class GameManager: public QGraphicsView
 {
     Q_OBJECT
+
 public:
     GameManager(QWidget* parent=NULL);
 
@@ -36,7 +36,6 @@ public:
     void changeLivesHUD();
     void gameLoop();
     bool gameOver();
-
     QGraphicsScene* scene;
     QGraphicsScene* scenePause;
     QGraphicsScene* sceneGame;
@@ -64,9 +63,8 @@ public:
 
     int i;
 
-
-
     bool isPlaying;
+
 public slots:
     void newGame();
     void quitGame();
@@ -74,7 +72,4 @@ public slots:
     void resumeGame();
     void goMainMenu();
     void keyPressEvent(QKeyEvent *event);
-
 };
-
-#endif // GAMEMANAGER_H

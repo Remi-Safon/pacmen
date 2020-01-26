@@ -1,5 +1,4 @@
-#ifndef ENVIRONMENT_H
-#define ENVIRONMENT_H
+#pragma once
 
 // constructing vectors
 #include <iostream>
@@ -20,10 +19,7 @@
 #define BOARD_Y 29
 #define NB_BOARDS 2
 
-
 using namespace std;
-
-
 
 class Environment {
 public:
@@ -40,5 +36,3 @@ public:
     int boardSizeX;
     int boardSizeY;
 };
-
-#endif // ENVIRONMENT_H

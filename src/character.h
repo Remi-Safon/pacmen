@@ -1,5 +1,4 @@
-#ifndef CHARACTER_H
-#define CHARACTER_H
+#pragma once
 
 #include "environment.h"
 #include "boardservice.h"
@@ -13,18 +12,14 @@
 #include <vector>
 
 class Character {
-
-private :
-
-
-public :
+public:
     Character(int x, int y);
     virtual ~Character();
     virtual void move() = 0;
     BoxState characterType;
     bool isCollision(Character*);
 
-protected :
+protected:
     Environment* environment;
     std::map<Qt::Key, Vector> movesVector;
     Qt::Key lastMove;
@@ -36,7 +31,3 @@ protected :
     Vector* boardPos;
     Vector* oldBoardPos;
 };
-
-
-
-#endif // CHARACTER_H

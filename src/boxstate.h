@@ -1,8 +1,7 @@
-#ifndef BOXSTATE_H
-#define BOXSTATE_H
+#pragma once
 
-
-enum class  BoxState {
+enum class BoxState
+{
     FREE = 0,
     WALL = 1,
     PLAYER = 2,
@@ -10,5 +9,3 @@ enum class  BoxState {
     FOOD = 4,
     GOLD = 5
 };
-
-#endif // BOXSTATE_H
