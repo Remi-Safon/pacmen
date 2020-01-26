@@ -1,5 +1,11 @@
 #pragma once
 
+// if running on Windows
+// #include <Windows.h>
+
+// if running on Mac
+#include <unistd.h>
+
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QGraphicsTextItem>
@@ -11,7 +17,6 @@
 #include "player.h"
 #include "enemy.h"
 #include "environment.h"
-#include <Windows.h>
 #include <thread>
 #include <QTimer>
 #include "vector.h"

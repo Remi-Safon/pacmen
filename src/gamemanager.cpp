@@ -85,8 +85,12 @@ void GameManager::gameLoop()
         environmentUI();
 
         QApplication::processEvents();
-        Sleep(100);
 
+        // if running on Windows
+        // Sleep(100);
+
+        // if running on Mac or Linux
+        usleep(100);
     }
     setScene(this->sceneEnd);
     endMenuDisplay(this->player->isAlive());
@@ -99,7 +103,6 @@ void GameManager::checkCollision()
             this->player->loseLive();
         }
     }
-
 }
 
 bool GameManager::gameOver()
