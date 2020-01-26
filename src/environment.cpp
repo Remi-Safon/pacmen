@@ -67,12 +67,13 @@ BoxState BOARDS [NB_BOARDS][BOARD_Y][BOARD_X] = {
 };
 
 
-Environment::Environment()
-{
+Environment::Environment() {
     // initialization of the board
     std::srand(std::time(nullptr)); // use current time as seed for random generator
-    // this->indexBoard = rand() % NB_BOARDS;
-    this->indexBoard = 0;
+    this->indexBoard = rand() % NB_BOARDS;
+    this->boardSizeX = BOARD_X;
+    this->boardSizeY = BOARD_Y;
+    // this->indexBoard = 0;
     this->init();
 
 }
@@ -84,7 +85,6 @@ void Environment::init() {
         }
     }
 }
-
 
 void Environment::setStateBox(int x, int y, BoxState state) {
     this->board[y][x] = state;

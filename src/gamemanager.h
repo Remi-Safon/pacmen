@@ -15,6 +15,10 @@
 #include <Windows.h>
 #include <thread>
 #include <QTimer>
+#include "vector.h"
+#include "item.h"
+#include "gold.h"
+#include "food.h"
 
 class GameManager: public QGraphicsView
 {
@@ -24,6 +28,7 @@ public:
 
     void mainMenuDisplay();
     void pauseMenuDisplay();
+    void checkCollision();
 
     void hudLoad();
 
@@ -51,12 +56,18 @@ public:
     Environment* environment;
 
     std::list<Character*> characters;
+    std::list<Item*> items;
 
     Player* player; //needs scene to load itself and progress itself?
     Enemy* ghost1;
     Enemy* ghost2;
     Enemy* ghost3;
     Enemy* ghost4;
+
+    void initItems();
+    void displayItems();
+
+
 
     bool isPlaying;
 public slots:

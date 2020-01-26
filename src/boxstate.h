@@ -7,7 +7,8 @@ enum class  BoxState {
     WALL = 1,
     PLAYER = 2,
     ENEMY = 3,
-    FOOD = 4
+    FOOD = 4,
+    GOLD = 5
 };
 
 #endif // BOXSTATE_H

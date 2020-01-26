@@ -34,7 +34,10 @@ public:
     void setStateBox(int x, int y, BoxState state);
     BoxState getBoxState(int x, int y);
     void init();
+    void initGold();
     QImage display();
+    int boardSizeX;
+    int boardSizeY;
 };
 
 #endif // ENVIRONMENT_H
