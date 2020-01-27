@@ -13,6 +13,7 @@ Ghost::~Ghost() {
 void Ghost::move() {
 
     std::vector<Qt::Key> move;
+    std::vector<Qt::Key> invMove;
 
     std::map<Qt::Key, BoxState> possibleMoves;
     possibleMoves[Qt::Key_Up] = this->environment->getBoxState(this->boardPos->x, this->boardPos->y - 1);
@@ -28,22 +29,38 @@ void Ghost::move() {
     int diffY = this->boardPos->y - playerPos.y;
     if (diffX < 0) {
         move.push_back(Qt::Key_Right);
+        invMove.push_back(Qt::Key_Left);
     } else if (diffX > 0) {
         move.push_back(Qt::Key_Left);
+        invMove.push_back(Qt::Key_Right);
     }
 
     if (diffY < 0) {
         move.push_back(Qt::Key_Down);
+        invMove.push_back(Qt::Key_Up);
     } else if (diffY > 0) {
         move.push_back(Qt::Key_Up);
-    }
-    for(std::vector<int>::size_type i = 0; i != move.size(); i++) {
-        if (possibleMoves.at(move[i]) != BoxState::WALL) {
-            leftPossibilities.push_back(move[i]);
-        }
+        invMove.push_back(Qt::Key_Down);
     }
 
+    if (this->isTouch > 0) {
+        qDebug("DUMB");
+        this->isTouch--;
+        for(std::vector<int>::size_type i = 0; i != invMove.size(); i++) {
+            if (possibleMoves.at(move[i]) != BoxState::WALL) {
+                leftPossibilities.push_back(invMove[i]);
+            }
+        }
+
+    } else {
+        for(std::vector<int>::size_type i = 0; i != move.size(); i++) {
+            if (possibleMoves.at(move[i]) != BoxState::WALL) {
+                leftPossibilities.push_back(move[i]);
+            }
+        }
+    }
     if (leftPossibilities.size() > 0) {
+
         unsigned int rand = std::rand() % leftPossibilities.size();
         this->oldBoardPos->set(this->boardPos->x, this->boardPos->y);
         this->boardPos->add (

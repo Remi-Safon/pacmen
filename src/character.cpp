@@ -6,6 +6,7 @@ Character::Character (int x, int y) {
     this->oldBoardPos = new Vector(x,y);
     this->environment = BoardService::getInstance();
     this->lastMove = Qt::Key_0;
+    this->isTouch = 0;
 
     this->movesVector[Qt::Key_Up] = *new Vector(0, -1);
     this->movesVector[Qt::Key_Down] = *new Vector(0, 1);

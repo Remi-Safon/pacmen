@@ -23,6 +23,7 @@ public :
     virtual void move() = 0;
     BoxState characterType;
     bool isCollision(Character*);
+    int isTouch;
 
 protected :
     Environment* environment;

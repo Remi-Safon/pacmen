@@ -122,6 +122,7 @@ void GameManager::checkCollision() {
                 eatedGhost = *it;
             } else {
                 this->player->loseLive();
+                (*it)->isTouch = 10;
             }
         }
     }
