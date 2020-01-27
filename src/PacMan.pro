@@ -28,6 +28,7 @@ SOURCES += \
     boardservice.cpp \
     character.cpp \
     food.cpp \
+    ghost.cpp \
     gold.cpp \
     item.cpp \
         main.cpp \
@@ -37,6 +38,7 @@ SOURCES += \
     environment.cpp \
     menu.cpp \
     button.cpp \
+    puller.cpp \
     vector.cpp
 
 HEADERS += \
@@ -44,6 +46,7 @@ HEADERS += \
     boxstate.h \
     character.h \
     food.h \
+    ghost.h \
     gold.h \
     item.h \
     player.h \
@@ -52,6 +55,7 @@ HEADERS += \
     environment.h \
     menu.h \
     button.h \
+    puller.h \
     vector.h
 
 FORMS +=

@@ -41,13 +41,16 @@ void GameManager::newGame(){
 
     //Load player and enemies
 
+    characters.clear();
+    // items.clear();
+
     environment = BoardService::getInstance();
 
-    player = new Player(9, 19);
-    ghost1 = new Enemy(9, 10);
-    ghost2 = new Enemy(10, 10);
-    ghost3 = new Enemy(8, 10);
-    ghost4 = new Enemy(11, 10);
+    player = new Player(3, 19);
+    ghost1 = new Puller(9, 10);
+    ghost2 = new Puller(10, 10);
+    ghost3 = new Puller(8, 15);
+    ghost4 = new Ghost(5, 5);
 
     characters.push_back(this->player);
     characters.push_back(this->ghost1);
@@ -105,6 +108,7 @@ void GameManager::gameLoop() {
         //qDebug () << this->player->isAlive() << endl;
 
     }
+
 
     setScene(this->sceneEnd);
     endMenuDisplay(this->player->isAlive());

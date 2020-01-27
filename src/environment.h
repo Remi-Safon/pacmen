@@ -15,6 +15,7 @@
 #include <ctime>
 
 #include <boxstate.h>
+#include "vector.h"
 
 #define BOARD_X 19
 #define BOARD_Y 29
@@ -39,6 +40,7 @@ public:
     QImage display();
     int boardSizeX;
     int boardSizeY;
+    Vector Environment::getPlayerPos();
 };
 
 #endif // ENVIRONMENT_H

@@ -20,6 +20,8 @@
 #include "gold.h"
 #include "food.h"
 #include <QThread>
+#include "ghost.h"
+#include "puller.h"
 
 class GameManager: public QGraphicsView //, public QThread
 {

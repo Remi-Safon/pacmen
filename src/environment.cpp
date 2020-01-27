@@ -221,6 +221,15 @@ QImage Environment::display(){
     return image;
 }
 
+Vector Environment::getPlayerPos() {
+    for (int y = 0; y < BOARD_Y; y++) {
+        for (int x = 0; x < BOARD_X; x++) {
+            if (this->getBoxState(x, y) == BoxState::PLAYER)
+                return *new Vector(x, y);
+        }
+    }
+}
+
 string Environment::toString() {
     ostringstream ss;
 
