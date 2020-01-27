@@ -42,9 +42,9 @@ void Ghost::move() {
             leftPossibilities.push_back(move[i]);
         }
     }
-unsigned int rand = std::rand() % leftPossibilities.size();
-    if (leftPossibilities.size() > 0) {
 
+    if (leftPossibilities.size() > 0) {
+        unsigned int rand = std::rand() % leftPossibilities.size();
         this->oldBoardPos->set(this->boardPos->x, this->boardPos->y);
         this->boardPos->add (
                     this->movesVector.at(leftPossibilities[rand]).x,
@@ -82,9 +82,6 @@ unsigned int rand = std::rand() % leftPossibilities.size();
         );
     }
 
-    /**************************/
-
-    //this->lastMove = leftPossibilities[rand];
     this->environment->setStateBox(this->boardPos->x, this->boardPos->y, BoxState::ENEMY);
 
     possibleMoves.clear();

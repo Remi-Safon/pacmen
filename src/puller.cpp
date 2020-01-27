@@ -19,7 +19,6 @@ void Puller::move() {
     possibleMoves[Qt::Key_Left] = this->environment->getBoxState(this->boardPos->x - 1, this->boardPos->y);
 
     std::vector<Qt::Key> leftPossibilities;
-    /**************************/
 
     switch (this->lastMove) {
         case Qt::Key_Up:
@@ -57,7 +56,7 @@ void Puller::move() {
 
 
 
-    // this->lastMove = leftPossibilities[rand];
+    this->lastMove = leftPossibilities[rand];
     this->environment->setStateBox(this->boardPos->x, this->boardPos->y, BoxState::ENEMY);
 
     possibleMoves.clear();
