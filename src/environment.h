@@ -33,6 +33,7 @@ public:
     int indexBoard;
     string toString();
     Environment();
+    ~Environment();
     void setStateBox(int x, int y, BoxState state);
     BoxState getBoxState(int x, int y);
     void init();

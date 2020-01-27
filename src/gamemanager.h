@@ -22,6 +22,7 @@
 #include <QThread>
 #include "ghost.h"
 #include "puller.h"
+#include <QFont>
 
 class GameManager: public QGraphicsView //, public QThread
 {
@@ -46,6 +47,7 @@ public:
     QGraphicsScene* sceneEnd;
     QGraphicsTextItem* scoreText;
     QGraphicsTextItem* livesText;
+    QGraphicsTextItem* ghostEaterText;
     QImage* map;
     QGraphicsPixmapItem* item;
 

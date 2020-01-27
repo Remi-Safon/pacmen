@@ -12,15 +12,19 @@ GameManager::GameManager(QWidget* parent)
 
     //Load all scenes
     scene = new QGraphicsScene();
+    scene->setBackgroundBrush(Qt::black);
     scene->setSceneRect(0,0,800,900);
 
     sceneGame = new QGraphicsScene();
+    sceneGame->setBackgroundBrush(Qt::black);
     sceneGame->setSceneRect(0,0,800,900);
 
     scenePause = new QGraphicsScene();
+    scenePause->setBackgroundBrush(Qt::black);
     scenePause->setSceneRect(0,0,800,900);
 
     sceneEnd = new QGraphicsScene();
+    sceneEnd->setBackgroundBrush(Qt::black);
     sceneEnd->setSceneRect(0,0,800,900);
 
     i = 1;
@@ -43,7 +47,7 @@ void GameManager::newGame(){
 
     characters.clear();
     // items.clear();
-
+    BoardService::resetInstance();
     environment = BoardService::getInstance();
 
     player = new Player(3, 19);
@@ -97,9 +101,11 @@ void GameManager::gameLoop() {
 
             if(framesBoost != 0){
                 framesBoost --;
+                ghostEaterText->setPlainText(QString("GHOST EATER : ") + QString::number(framesBoost));
                 this->player->canEatGhost(true);
             } else {
                 this->player->canEatGhost(false);
+                ghostEaterText->setPlainText(QString(""));
             }
 
             Sleep(150);
@@ -141,7 +147,6 @@ bool GameManager::gameOver () {
     } else {
         return true;
     }*/
-    qDebug () << this->goldRemaining() << endl;
     return !this->player->isAlive();
     //return (this->player->isAlive() || this->goldRemaining() ? false : true);
 }
@@ -191,9 +196,7 @@ void GameManager::hudLoad()
 {
     //PAUSE BTN
     Button* pauseButton = new Button(QString("Pause"));
-    int bxPos = 20;
-    int byPos = 20;
-    pauseButton->setPos(bxPos,byPos);
+    pauseButton->setPos(20,20);
     connect(pauseButton,SIGNAL(clicked()),this,SLOT(pauseGame()));
     sceneGame->addItem(pauseButton);
 
@@ -201,14 +204,25 @@ void GameManager::hudLoad()
     scoreText = new QGraphicsTextItem(QString("SCORE: 0"));
     int txPos = this->width()/2 - scoreText->boundingRect().width()/2;
     int tyPos = 20;
-    scoreText->setPos(txPos,tyPos);
+    scoreText->setPos(5,650);
+    scoreText->setFont(*new QFont("Times", 18, QFont::Bold));
+    scoreText->setDefaultTextColor(Qt::white);
     sceneGame->addItem(scoreText);
 
     //PLAYER LIVES
+    ghostEaterText = new QGraphicsTextItem(QString(""));
+    ghostEaterText->setPos(5,750);
+    ghostEaterText->setFont(*new QFont("Times", 18, QFont::Bold));
+    ghostEaterText->setDefaultTextColor(Qt::white);
+    sceneGame->addItem(ghostEaterText);
+
+
+
+    //PLAYER LIVES
     livesText = new QGraphicsTextItem(QString("LIVES: 3"));
-    int lxPos = 750;
-    int lyPos = 20;
-    livesText->setPos(lxPos,lyPos);
+    livesText->setFont(*new QFont("Times", 18, QFont::Bold));
+    livesText->setDefaultTextColor(Qt::white);
+    livesText->setPos(5, 700);
     sceneGame->addItem(livesText);
 }
 
@@ -217,6 +231,8 @@ void GameManager::mainMenuDisplay(){
     scene->clear();
     //Main menu UI
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Pac MEN"));
+    titleText->setDefaultTextColor(Qt::white);
+    titleText->setFont(*new QFont("Times", 40, QFont::Bold));
     int txPos = this->width()/2 - titleText->boundingRect().width()/2;
     int tyPos = 150;
     titleText->setPos(txPos,tyPos);
@@ -336,12 +352,12 @@ void GameManager::keyPressEvent(QKeyEvent *event)
     }
 }
 void GameManager::initItems() {
-    int nbFood = 4;
+    int nbFood = 3;
     for (int y = 0; y < this->environment->boardSizeY; y++) {
         for (int x = 0; x < this->environment->boardSizeX; x++) {
-            int rand = std::rand() % 10;
+            int rand = std::rand() % 100;
             if (this->environment->getBoxState(x, y) == BoxState::FREE) {
-                if (rand < 1 && nbFood-- > 0) {
+                if (rand < 2 && nbFood-- > 0) {
                     this->items.push_back(new Food(x, y));
                 } else {
                     this->items.push_back(new Gold(x, y));
@@ -362,8 +378,10 @@ void GameManager::hitItems() {
             if ((*it)->characterType == BoxState::GOLD) {
                 this->player->nbGold++;
             } else  if ((*it)->characterType == BoxState::FOOD) {
+                this->player->nbGold += 5;
                 //this->player->canEatGhost(true);
                 framesBoost += 50;
+                ghostEaterText->setPlainText(QString("GHOST EATER !!"));
             }
             deletedItem.push_back((*it));
             // this->items.remove((*it));
@@ -380,7 +398,6 @@ void GameManager::hitItems() {
 bool GameManager::goldRemaining() {
     for (std::list<Item*>::iterator it = this->items.begin(); it != items.end(); ++it) {
         if ((*it)->characterType == BoxState::GOLD) {
-            qDebug("GOLD");
             return true;
         }
     }

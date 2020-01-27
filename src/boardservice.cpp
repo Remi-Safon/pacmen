@@ -9,3 +9,7 @@ Environment* BoardService::getInstance() {
     }
     return instance;
 }
+
+void BoardService::resetInstance() {
+   instance = new Environment();
+}

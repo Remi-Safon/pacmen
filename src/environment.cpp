@@ -11,14 +11,14 @@ BoxState BOARDS [NB_BOARDS][BOARD_Y][BOARD_X] = {
         { BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL },
         { BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL },
         { BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL },
-        { BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE },
-        { BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE },
+        { BoxState::EMPTY, BoxState::EMPTY, BoxState::EMPTY, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::EMPTY, BoxState::EMPTY, BoxState::EMPTY },
+        { BoxState::EMPTY, BoxState::EMPTY, BoxState::EMPTY, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::EMPTY, BoxState::EMPTY, BoxState::EMPTY },
         { BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL },
         { BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE },
-        { BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE },
-        { BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL },
-        { BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE },
-        { BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE },
+        { BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::EMPTY, BoxState::EMPTY, BoxState::EMPTY, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE },
+        { BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::EMPTY, BoxState::EMPTY, BoxState::EMPTY, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL },
+        { BoxState::EMPTY, BoxState::EMPTY, BoxState::EMPTY, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::EMPTY, BoxState::EMPTY, BoxState::EMPTY },
+        { BoxState::EMPTY, BoxState::EMPTY, BoxState::EMPTY, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::EMPTY, BoxState::EMPTY, BoxState::EMPTY },
         { BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL },
         { BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL },
         { BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL },
@@ -28,10 +28,10 @@ BoxState BOARDS [NB_BOARDS][BOARD_Y][BOARD_X] = {
         { BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL },
         { BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL },
         { BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL },
-        { BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE },
-        { BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE },
+        { BoxState::EMPTY, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::EMPTY },
+        { BoxState::EMPTY, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::EMPTY },
         { BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::FREE, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL },
-        { BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL, BoxState::FREE, BoxState::WALL, BoxState::WALL }
+        { BoxState::WALL, BoxState::WALL, BoxState::EMPTY, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::EMPTY, BoxState::WALL, BoxState::WALL, BoxState::EMPTY, BoxState::WALL, BoxState::WALL }
     },
     {
         { BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL, BoxState::WALL },
@@ -132,8 +132,10 @@ Environment::Environment() {
     this->boardSizeY = BOARD_Y;
     // this->indexBoard = 0;
     this->init();
-
 }
+Environment::~Environment() {
+}
+
 void Environment::init() {
     for (int y = 0; y < BOARD_Y; y++) {
         for (int x = 0; x < BOARD_X; x++) {
@@ -208,6 +210,16 @@ QImage Environment::display(){
                             image.setPixel(x*5+m,y*5+n,argb);
                         }
                     }
+                    break;
+                case BoxState::EMPTY:
+                    //argb = qRgb(0,0,0);
+                    for(int n = 0;n < 5; n++){
+                        for(int m = 0;m < 5; m++){
+                            argb = qRgb(0,0,0);
+                            image.setPixel(x*5+m,y*5+n,argb);
+                        }
+                    }
+
                     break;
             }
 

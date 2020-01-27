@@ -10,8 +10,10 @@ private:
 
 public:
     static Environment* getInstance();
+    static void resetInstance();
 
 };
+
 
 
 
