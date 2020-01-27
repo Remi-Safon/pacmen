@@ -47,7 +47,7 @@ void Ghost::move() {
         qDebug("DUMB");
         this->isTouch--;
         for(std::vector<int>::size_type i = 0; i != invMove.size(); i++) {
-            if (possibleMoves.at(move[i]) != BoxState::WALL) {
+            if (possibleMoves.at(invMove[i]) != BoxState::WALL) {
                 leftPossibilities.push_back(invMove[i]);
             }
         }
