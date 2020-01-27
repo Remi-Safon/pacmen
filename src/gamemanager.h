@@ -64,6 +64,7 @@ public:
     bool goldRemaining();
 
     int i;
+    int framesBoost;
 
     bool isPlaying;
 public slots:

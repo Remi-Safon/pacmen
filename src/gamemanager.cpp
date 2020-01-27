@@ -55,6 +55,8 @@ void GameManager::newGame(){
     characters.push_back(this->ghost3);
     characters.push_back(this->ghost4);
 
+    framesBoost = 0;
+
     isPlaying = true;
 
     initItems();
@@ -89,6 +91,13 @@ void GameManager::gameLoop() {
             changeLivesHUD();
             changeScoreHUD();
             environmentUI();
+
+            if(framesBoost != 0){
+                framesBoost --;
+                this->player->canEatGhost(true);
+            } else {
+                this->player->canEatGhost(false);
+            }
 
             Sleep(150);
         }
@@ -348,7 +357,8 @@ void GameManager::hitItems() {
             if ((*it)->characterType == BoxState::GOLD) {
                 this->player->nbGold++;
             } else  if ((*it)->characterType == BoxState::FOOD) {
-                this->player->canEatGhost(true);
+                //this->player->canEatGhost(true);
+                framesBoost += 50;
             }
             deletedItem.push_back((*it));
             // this->items.remove((*it));
