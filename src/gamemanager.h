@@ -65,8 +65,6 @@ public:
 
     int i;
 
-
-
     bool isPlaying;
 public slots:
     void newGame();
@@ -75,6 +73,7 @@ public slots:
     void resumeGame();
     void goMainMenu();
     void keyPressEvent(QKeyEvent *event);
+    bool eventFilter(QObject *obj, QEvent *event);
 /*
 protected:
     void run();

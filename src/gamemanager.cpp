@@ -292,10 +292,27 @@ void GameManager::environmentUI(){
 
     item = new QGraphicsPixmapItem( QPixmap::fromImage(*map));
     item->setScale(5);
-    item->setPos(txPos,tyPos);
+    item->setPos(272,tyPos);
     sceneGame->addItem(item);
 
     delete map;
+}
+
+bool GameManager::eventFilter(QObject *obj, QEvent *event)
+{
+     if( event->type() == QEvent::KeyPress)
+      {
+           qDebug()<<"Scroll Bar Key press event";
+
+            return true;
+       }
+        if( event->type() == QEvent::Paint)
+      {
+           qDebug()<<"Scroll Bar Paint event";
+       }
+
+    return false;
+
 }
 
 void GameManager::keyPressEvent(QKeyEvent *event)
