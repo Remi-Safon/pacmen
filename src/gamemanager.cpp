@@ -77,22 +77,26 @@ void GameManager::run() {
 void GameManager::gameLoop() {
 
 
-    while (!this->gameOver() && isPlaying) {
+    while (!this->gameOver()) {
+        if(isPlaying){
+            this->environment->init();
+            displayItems();
+            for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
+                (*it)->move();
+            }
+            hitItems();
+            checkCollision();
+            changeLivesHUD();
+            changeScoreHUD();
+            environmentUI();
 
-        this->environment->init();
-        displayItems();
-        for (std::list<Character*>::iterator it = this->characters.begin(); it != characters.end(); ++it) {
-            (*it)->move();
+            Sleep(150);
         }
-        hitItems();
-        checkCollision();
-        changeLivesHUD();
-        changeScoreHUD();
-        environmentUI();
-
         QApplication::processEvents();
-        Sleep(150);
+        //qDebug () << this->player->isAlive() << endl;
+
     }
+
     setScene(this->sceneEnd);
     endMenuDisplay(this->player->isAlive());
 }
@@ -116,7 +120,16 @@ void GameManager::checkCollision() {
 }
 
 bool GameManager::gameOver () {
-    return (this->player->isAlive() || this->goldRemaining() ? false : true);
+    /*if(!this->player->isAlive()){
+        return false;
+    } else if (this->goldRemaining()) {
+        return false;
+    } else {
+        return true;
+    }*/
+    qDebug () << this->goldRemaining() << endl;
+    return !this->player->isAlive();
+    //return (this->player->isAlive() || this->goldRemaining() ? false : true);
 }
 
 void GameManager::quitGame()
@@ -138,7 +151,6 @@ void GameManager::pauseGame()
 
 void GameManager::resumeGame()
 {
-    //TODO: SET TIME TO NORMAL AND HIDE PAUSE MENU
     isPlaying = true;
     setScene(sceneGame);
     show();
@@ -151,6 +163,7 @@ void GameManager::goMainMenu()
     free(ghost2);
     free(ghost3);
     free(ghost4);
+    free(environment);
 
     isPlaying = false;
 
@@ -342,6 +355,7 @@ void GameManager::hitItems() {
 bool GameManager::goldRemaining() {
     for (std::list<Item*>::iterator it = this->items.begin(); it != items.end(); ++it) {
         if ((*it)->characterType == BoxState::GOLD) {
+            qDebug("GOLD");
             return true;
         }
     }
