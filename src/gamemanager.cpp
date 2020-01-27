@@ -158,13 +158,6 @@ void GameManager::resumeGame()
 
 void GameManager::goMainMenu()
 {
-    free(player);
-    free(ghost1);
-    free(ghost2);
-    free(ghost3);
-    free(ghost4);
-    free(environment);
-
     isPlaying = false;
 
     setScene(scene);
